@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bergen Tutors — Verified NJ Educators, Right in Your Neighborhood</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-mid: #243456;
+    --navy-light: #2a3d62;
+    --navy-pale: #f0f2f7;
+    --gold: #c8a455;
+    --gold-dark: #a8873a;
+    --gold-light: #f5edda;
+    --gold-glow: rgba(200, 164, 85, 0.15);
+    --cream: #faf8f4;
+    --white: #ffffff;
+    --text: #2c2c2c;
+    --text-light: #6b7280;
+    --green: #2d8a5e;
+    --green-light: #e8f5ee;
+    --border: #e5e2dc;
+    --shadow: 0 2px 16px rgba(26, 39, 68, 0.08);
+    --shadow-md: 0 4px 20px rgba(26, 39, 68, 0.1);
+    --shadow-lg: 0 8px 32px rgba(26, 39, 68, 0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes sealSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .fade-up-d1 { animation-delay: 0.1s; }
+  .fade-up-d2 { animation-delay: 0.25s; }
+  .fade-up-d3 { animation-delay: 0.4s; }
+  .fade-up-d4 { animation-delay: 0.55s; }
+  .fade-up-d5 { animation-delay: 0.7s; }
+
+  /* ===================== NAV ===================== */
+  nav {
+    background: var(--navy);
+    padding: 0 2.5rem;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--gold);
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+  }
+  .nav-logo-seal { width: 46px; height: 46px; flex-shrink: 0; }
+  .nav-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .nav-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .nav-subtitle {
+    font-size: 0.62rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-weight: 600;
+  }
+  .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 700 !important;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.9; }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: 
+      radial-gradient(circle at 20% 50%, var(--gold) 1px, transparent 1px),
+      radial-gradient(circle at 80% 20%, var(--gold) 1px, transparent 1px),
+      radial-gradient(circle at 60% 80%, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px, 80px 80px, 70px 70px;
+  }
+  .hero-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 5rem 2rem 5.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+  }
+  .hero-content { max-width: 600px; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(200, 164, 85, 0.15);
+    border: 1px solid rgba(200, 164, 85, 0.3);
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge svg { width: 14px; height: 14px; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+  }
+  .hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 520px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+    box-shadow: 0 4px 16px rgba(200, 164, 85, 0.3);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.6); }
+  .btn-navy {
+    background: var(--navy);
+    color: var(--white);
+    box-shadow: var(--shadow);
+  }
+
+  /* Hero NJ map */
+  .hero-map-wrap {
+    position: relative;
+    width: 300px;
+    height: 360px;
+    flex-shrink: 0;
+  }
+  .hero-map-glow {
+    position: absolute;
+    inset: -30px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 30%, rgba(200,164,85,0.15) 0%, transparent 65%);
+  }
+  .hero-map-wrap svg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(200,164,85,0.15);
+  }
+  .stats-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  /* ===================== SECTIONS ===================== */
+  .section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-dark);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+  .section-desc {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ===================== HOW IT WORKS ===================== */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .how-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+  .how-number {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+  .how-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+  }
+  .how-card p {
+    font-size: 0.92rem;
+    color: var(--text-light);
+    line-height: 1.65;
+  }
+  .how-arrow {
+    position: absolute;
+    right: -1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--border);
+    font-size: 1.5rem;
+  }
+
+  /* ===================== WHY SECTION ===================== */
+  .why-section {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .why-card {
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    transition: box-shadow 0.25s, transform 0.2s;
+  }
+  .why-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .why-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .why-icon svg { width: 22px; height: 22px; color: var(--gold); }
+  .why-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .why-card p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.65;
+  }
+
+  /* ===================== FEATURED TUTORS ===================== */
+  .tutors-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  .tutor-card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.25s, transform 0.2s;
+  }
+  .tutor-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+  .tutor-card-header {
+    background: var(--navy);
+    padding: 1.5rem 1.5rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .tutor-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background: var(--navy-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--white);
+    flex-shrink: 0;
+    border: 2px solid rgba(200,164,85,0.3);
+  }
+  .tutor-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+  }
+  .tutor-card-school {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .tutor-card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--green);
+    background: var(--green-light);
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    margin-top: 0.3rem;
+  }
+  .tutor-card-badge svg { width: 11px; height: 11px; }
+  .tutor-card-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+  .tutor-card-subjects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+  .tutor-card-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 12px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .tutor-card-tag-special {
+    background: var(--gold-light);
+    border-color: var(--gold);
+    color: #8a6d2b;
+  }
+  .tutor-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+  }
+  .tutor-card-price {
+    font-weight: 700;
+    color: var(--gold-dark);
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+  }
+  .tutor-card-link {
+    display: block;
+    text-align: center;
+    padding: 0.6rem;
+    border-radius: 6px;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: background 0.2s;
+  }
+  .tutor-card-link:hover { background: var(--navy-light); }
+
+  /* ===================== SUBJECTS ===================== */
+  .subjects-section { background: var(--navy); }
+  .subjects-section .section-label { color: var(--gold); }
+  .subjects-section .section-title { color: var(--white); }
+  .subjects-section .section-desc { color: rgba(255,255,255,0.6); }
+  .subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .subject-chip {
+    background: var(--navy-mid);
+    border: 1px solid rgba(200,164,85,0.15);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    cursor: default;
+  }
+  .subject-chip:hover {
+    border-color: var(--gold);
+    background: rgba(200,164,85,0.08);
+    transform: translateY(-2px);
+  }
+  .subject-chip-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .subject-chip-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* ===================== TOWNS ===================== */
+  .towns-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+  .town-pill {
+    padding: 0.5rem 1.1rem;
+    border-radius: 24px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--navy);
+    cursor: default;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .town-pill:hover {
+    border-color: var(--gold);
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  /* ===================== CTA SECTION ===================== */
+  .cta-section {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg-ring {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,164,85,0.06);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .cta-bg-ring:nth-child(2) { width: 700px; height: 700px; }
+  .cta-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .cta-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,164,85,0.15);
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .cta-card:hover { border-color: rgba(200,164,85,0.4); }
+  .cta-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .cta-card p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .cta-card .btn { width: 100%; justify-content: center; }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(200,164,85,0.15);
+    padding: 3rem 2rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .footer-seal { width: 36px; height: 36px; }
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+  .footer-motto {
+    font-size: 0.7rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .footer-col h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+  .footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.88rem;
+    margin-bottom: 0.4rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    max-width: 1080px;
+    margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; padding: 3.5rem 1.5rem 4rem; }
+    .hero-content { max-width: 100%; }
+    .hero-sub { margin: 0 auto 2rem; }
+    .hero-actions { justify-content: center; }
+    .hero-map-wrap { display: none; }
+    .hero h1 { font-size: 2.2rem; }
+    .stats-inner { gap: 2rem; }
+    .how-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .how-arrow { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    .tutors-grid { grid-template-columns: 1fr; }
+    .subjects-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-inner { grid-template-columns: 1fr; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .section { padding: 3.5rem 1.5rem; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.8rem; }
+    .subjects-grid { grid-template-columns: 1fr 1fr; }
+    .section-title { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== NAV ==================== -->
+<nav>
+  <a href="#" class="nav-brand">
+    <svg class="nav-logo-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="96" fill="none" stroke="#c8a455" stroke-width="3"/>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="#c8a455" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="85" fill="#1a2744"/>
+      <circle cx="100" cy="6" r="3" fill="#c8a455"/>
+      <circle cx="100" cy="194" r="3" fill="#c8a455"/>
+      <circle cx="6" cy="100" r="3" fill="#c8a455"/>
+      <circle cx="194" cy="100" r="3" fill="#c8a455"/>
+      <defs>
+        <path id="topArc" d="M 30,100 a 70,70 0 0,1 140,0" fill="none"/>
+        <path id="bottomArc" d="M 170,100 a 70,70 0 0,1 -140,0" fill="none"/>
+      </defs>
+      <text font-family="'Playfair Display', serif" font-size="13" fill="#c8a455" letter-spacing="5" font-weight="600">
+        <textPath href="#topArc" startOffset="50%" text-anchor="middle">BERGEN TUTORS</textPath>
+      </text>
+      <text font-family="'Playfair Display', serif" font-size="11" fill="#c8a455" letter-spacing="4" font-style="italic">
+        <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">DOCENDO DISCIMUS</textPath>
+      </text>
+      <g transform="translate(100, 95)" fill="none" stroke="#c8a455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M -28,12 L -28,-8 C -28,-8 -14,-14 0,-8 C 14,-14 28,-8 28,-8 L 28,12" fill="none"/>
+        <line x1="0" y1="-8" x2="0" y2="12"/>
+        <path d="M -28,12 C -14,6 0,12 0,12 C 0,12 14,6 28,12"/>
+        <line x1="0" y1="-8" x2="0" y2="-22"/>
+        <path d="M -5,-26 C -5,-32 0,-36 0,-36 C 0,-36 5,-32 5,-26 C 5,-22 0,-20 0,-20 C 0,-20 -5,-22 -5,-26 Z" fill="#c8a455" stroke="none"/>
+        <line x1="-8" y1="-30" x2="-12" y2="-34" stroke-width="1.5"/>
+        <line x1="8" y1="-30" x2="12" y2="-34" stroke-width="1.5"/>
+        <line x1="-10" y1="-24" x2="-15" y2="-24" stroke-width="1.5"/>
+        <line x1="10" y1="-24" x2="15" y2="-24" stroke-width="1.5"/>
+      </g>
+      <g fill="#c8a455">
+        <polygon points="40,100 42,95 44,100 42,105"/>
+        <polygon points="156,100 158,95 160,100 158,105"/>
+      </g>
+      <circle cx="100" cy="100" r="55" fill="none" stroke="#c8a455" stroke-width="0.75" stroke-dasharray="2,4"/>
+    </svg>
+    <div class="nav-text">
+      <span class="nav-title">Bergen Tutors</span>
+      <span class="nav-subtitle">Docendo Discimus</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="bergen-tutors-search-results-v1.html">Find a Tutor</a>
+    <a href="#">Subjects</a>
+    <a href="#">Towns</a>
+    <a href="#">For Educators</a>
+    <a href="#" class="nav-cta">List Your Profile</a>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge fade-up">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Every Tutor is a Verified NJ Educator
+      </div>
+      <h1 class="fade-up fade-up-d1">Bergen County's<br>Trusted Tutoring<br><em>Network</em></h1>
+      <p class="hero-sub fade-up fade-up-d2">Serving families in Bergen County — home to 9 of New Jersey's top 50 public high schools, in the #1 ranked state for education in America. Every tutor on Bergen Tutors is a verified New Jersey educator who knows your schools, your curriculum, and your kids.</p>
+      <!-- Hero search bar -->
+      <div class="fade-up fade-up-d3" style="margin-bottom:1.25rem;position:relative;">
+        <div style="display:flex;background:rgba(255,255,255,0.08);border:1.5px solid rgba(200,164,85,0.4);border-radius:10px;overflow:visible;max-width:520px;">
+          <div style="flex:1;border-right:1px solid rgba(255,255,255,0.12);position:relative;">
+            <div style="padding:0.25rem 1rem 0;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);opacity:0.85;">Subject</div>
+            <input id="heroSubject" type="text" placeholder="e.g. SAT Math, AP Biology…"
+              style="width:100%;background:transparent;border:none;outline:none;padding:0.1rem 1rem 0.55rem;font-family:'Source Sans 3',sans-serif;font-size:0.92rem;color:var(--white);"
+              oninput="heroFilter(this.value)" autocomplete="off" />
+            <div id="heroSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:50;background:var(--white);border:1.5px solid var(--navy);border-radius:0 0 8px 8px;box-shadow:0 8px 24px rgba(26,39,68,0.15);max-height:180px;overflow-y:auto;"></div>
+          </div>
+          <div style="width:145px;border-right:1px solid rgba(255,255,255,0.12);">
+            <div style="padding:0.25rem 1rem 0;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);opacity:0.85;">Town</div>
+            <select id="heroTown" style="width:100%;background:transparent;border:none;outline:none;padding:0.1rem 0.75rem 0.55rem;font-family:'Source Sans 3',sans-serif;font-size:0.88rem;color:var(--white);appearance:none;-webkit-appearance:none;cursor:pointer;">
+              <option value="" style="color:#333;">Any town</option>
+              <option style="color:#333;">Cresskill</option><option style="color:#333;">Tenafly</option>
+              <option style="color:#333;">Ridgewood</option><option style="color:#333;">Englewood</option>
+              <option style="color:#333;">Fort Lee</option><option style="color:#333;">Paramus</option>
+              <option style="color:#333;">Hackensack</option><option style="color:#333;">Fair Lawn</option>
+              <option style="color:#333;">Glen Rock</option><option style="color:#333;">Mahwah</option>
+              <option style="color:#333;">Ramsey</option><option style="color:#333;">Westwood</option>
+              <option style="color:#333;">Wyckoff</option><option style="color:#333;">Franklin Lakes</option>
+              <option style="color:#333;">Allendale</option><option style="color:#333;">Closter</option>
+              <option style="color:#333;">Demarest</option><option style="color:#333;">River Vale</option>
+              <option style="color:#333;">Old Tappan</option><option style="color:#333;">Park Ridge</option>
+            </select>
+          </div>
+          <button onclick="heroSearch()" style="background:var(--gold);border:none;padding:0 1.25rem;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:0 8px 8px 0;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a2744" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-actions fade-up fade-up-d4">
+        <a href="bergen-tutors-search-results-v1.html" class="btn btn-outline" style="font-size:0.85rem;">Browse all tutors →</a>
+        <a href="bergen-tutors-signup-v3.html" class="btn btn-outline">I'm an Educator →</a>
+      </div>
+    </div>
+    <div class="hero-map-wrap fade-up fade-up-d4">
+      <div class="hero-map-glow"></div>
+      <svg viewBox="0 0 350 560" xmlns="http://www.w3.org/2000/svg">
+        
+        <!-- NJ State outline - traced from reference map -->
+        <!-- The state runs NE to SW, narrow at top (Bergen/Passaic), widens in central NJ, narrows again at Cape May -->
+        <path d="
+          M 198,22 L 204,18 212,16 220,14 228,16 236,14 244,18 252,16 258,20
+          L 264,24 270,22 276,28 280,36 282,44 280,52 278,58
+          L 280,66 284,74 286,82 284,90 280,96 278,104
+          L 282,112 286,120 288,130 286,138 282,146
+          L 280,154 282,162 286,170 290,180 292,190
+          L 290,200 286,208 288,216 292,226 296,236
+          L 298,246 296,256 292,264 288,272 290,280
+          L 294,290 296,300 294,310 290,318 286,326
+          L 282,334 276,342 270,350 264,358 256,366
+          L 248,374 240,380 232,388 224,396 216,404
+          L 208,412 198,418 188,424 178,430 168,436
+          L 158,442 148,448 140,454 132,460 126,466
+          L 120,472 114,478 108,484 104,490 100,496
+          L 96,502 94,508 98,512 104,510 112,506
+          L 120,500 126,494 132,488 138,482
+          L 132,478 124,474 116,468 110,460 106,452
+          L 102,442 100,432 98,420 96,408 94,396
+          L 92,384 90,370 88,356 88,342 90,328
+          L 92,314 94,300 94,286 92,272 90,258
+          L 88,244 88,230 90,216 92,202 96,190
+          L 100,178 104,166 108,156 114,146 120,136
+          L 126,126 132,118 138,110 144,102 150,94
+          L 156,86 162,78 168,70 174,62 180,54
+          L 186,46 192,38 196,30 198,22 Z
+        " fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linejoin="round"/>
+        
+        <!-- Bergen County - northeastern corner of NJ, highlighted in gold -->
+        <!-- Bergen is bordered by NY state line (north), Hudson River (east), Passaic County (west), Hudson/Essex (south) -->
+        <path d="
+          M 228,16 L 236,14 244,18 252,16 258,20
+          L 264,24 270,22 276,28 280,36 282,44 280,52 278,58
+          L 280,66 284,74 286,82 284,90 280,96
+          L 272,98 264,96 256,98 248,96 240,94
+          L 232,92 224,88 218,84 212,78 208,70
+          L 206,62 206,54 208,46 212,38 216,30
+          L 220,24 224,20 228,16 Z
+        " fill="var(--gold)" fill-opacity="0.85" stroke="var(--gold)" stroke-width="2" stroke-linejoin="round">
+          <animate attributeName="fill-opacity" values="0.7;0.95;0.7" dur="3s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Gold star on Bergen County -->
+        <g transform="translate(248, 56)">
+          <polygon points="0,-18 5,-6 18,-6 8,3 12,16 0,8 -12,16 -8,3 -18,-6 -5,-6" 
+            fill="var(--gold)" stroke="var(--navy)" stroke-width="1.5" stroke-linejoin="round">
+            <animate attributeName="opacity" values="0.85;1;0.85" dur="2.5s" repeatCount="indefinite"/>
+          </polygon>
+        </g>
+        
+        <!-- "New Jersey" text along the body of the state -->
+        <text x="175" y="310" font-family="'Source Sans 3', sans-serif" font-size="18" fill="rgba(255,255,255,0.3)" font-weight="600" text-anchor="middle" letter-spacing="5" transform="rotate(-15, 175, 310)">NEW JERSEY</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">75+</div>
+      <div class="stat-label">School Districts</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">166K</div>
+      <div class="stat-label">Students in Bergen County</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">70</div>
+      <div class="stat-label">Towns Served</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Verified Educators</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HOW IT WORKS ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Find the Right Tutor in Minutes</h2>
+    <p class="section-desc">No algorithms, no random matches. Browse real profiles of certified teachers who work in your community.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-number">1</div>
+      <h3>Search Your Town</h3>
+      <p>Browse tutors by your town, subject, or grade level. Every profile shows their school, certifications, and experience — real teachers you can verify.</p>
+      <span class="how-arrow">→</span>
+    </div>
+    <div class="how-card">
+      <div class="how-number">2</div>
+      <h3>Read & Compare</h3>
+      <p>View detailed profiles with parent testimonials, subjects taught, availability, and pricing tiers. Find someone who fits your child's needs and your schedule.</p>
+      <span class="how-arrow">→</span>
+    </div>
+    <div class="how-card">
+      <div class="how-number">3</div>
+      <h3>Reach Out Directly</h3>
+      <p>Send an inquiry through the tutor's profile. They'll respond to set up sessions on your terms — at your home, the library, or online.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== WHY BERGEN TUTORS ==================== -->
+<div class="why-section">
+  <div class="section" style="padding-bottom: 5rem;">
+    <div class="section-header">
+      <div class="section-label">The Bergen Tutors Difference</div>
+      <h2 class="section-title">Not Just Any Tutoring Platform</h2>
+      <p class="section-desc">We're built for Bergen County families by people who know Bergen County schools.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>Every Tutor Is Verified</h3>
+        <p>We check every tutor's credentials against the NJ Department of Education database before their profile goes live. No exceptions. No self-reported qualifications.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Hyperlocal by Design</h3>
+        <p>Our tutors aren't scattered across the tri-state area. They live and teach right here in Bergen County. They know your schools, your curriculum, your community.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3>Real Teachers, Real Classrooms</h3>
+        <p>Every tutor on our platform teaches (or has taught) in a Bergen County school. See their school, district, and years of experience — not just a generic bio.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Special Education Expertise</h3>
+        <p>Need a tutor who understands IEPs, 504 plans, and accommodations? We make it easy to find educators with special education certifications and experience.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FEATURED TUTORS ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-label">Featured Educators</div>
+    <h2 class="section-title">Meet Some of Our Tutors</h2>
+    <p class="section-desc">Certified teachers from Bergen County schools, ready to help your child succeed.</p>
+  </div>
+  <div class="tutors-grid">
+
+    <!-- TUTOR 1 -->
+    <div class="tutor-card">
+      <div class="tutor-card-header">
+        <div class="tutor-avatar">SM</div>
+        <div>
+          <div class="tutor-card-name">Sarah M.</div>
+          <div class="tutor-card-school">Ridgewood Public Schools</div>
+          <div class="tutor-card-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Verified
+          </div>
+        </div>
+      </div>
+      <div class="tutor-card-body">
+        <div class="tutor-card-subjects">
+          <span class="tutor-card-tag">Algebra I & II</span>
+          <span class="tutor-card-tag">Geometry</span>
+          <span class="tutor-card-tag">SAT Math</span>
+          <span class="tutor-card-tag tutor-card-tag-special">AP Calculus</span>
+          <span class="tutor-card-tag tutor-card-tag-special">Special Ed</span>
+        </div>
+        <div class="tutor-card-meta">
+          <span>14 yrs exp · In-Person & Virtual</span>
+          <span class="tutor-card-price">$$</span>
+        </div>
+        <a href="#" class="tutor-card-link">View Profile</a>
+      </div>
+    </div>
+
+    <!-- TUTOR 2 -->
+    <div class="tutor-card">
+      <div class="tutor-card-header">
+        <div class="tutor-avatar">JR</div>
+        <div>
+          <div class="tutor-card-name">James R.</div>
+          <div class="tutor-card-school">Glen Rock Public Schools</div>
+          <div class="tutor-card-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Verified
+          </div>
+        </div>
+      </div>
+      <div class="tutor-card-body">
+        <div class="tutor-card-subjects">
+          <span class="tutor-card-tag">English/ELA</span>
+          <span class="tutor-card-tag">Essay Writing</span>
+          <span class="tutor-card-tag">SAT Reading</span>
+          <span class="tutor-card-tag tutor-card-tag-special">AP English Lit</span>
+        </div>
+        <div class="tutor-card-meta">
+          <span>9 yrs exp · In-Person & Virtual</span>
+          <span class="tutor-card-price">$$</span>
+        </div>
+        <a href="#" class="tutor-card-link">View Profile</a>
+      </div>
+    </div>
+
+    <!-- TUTOR 3 -->
+    <div class="tutor-card">
+      <div class="tutor-card-header">
+        <div class="tutor-avatar">MP</div>
+        <div>
+          <div class="tutor-card-name">Maria P.</div>
+          <div class="tutor-card-school">Retired · Wyckoff Schools</div>
+          <div class="tutor-card-badge" style="background: var(--gold-light); color: #8a6d2b;">
+            Retired NJ Educator
+          </div>
+        </div>
+      </div>
+      <div class="tutor-card-body">
+        <div class="tutor-card-subjects">
+          <span class="tutor-card-tag">Reading K–5</span>
+          <span class="tutor-card-tag">Phonics</span>
+          <span class="tutor-card-tag">Math K–3</span>
+          <span class="tutor-card-tag tutor-card-tag-special">Special Ed</span>
+        </div>
+        <div class="tutor-card-meta">
+          <span>28 yrs exp · In-Person Only</span>
+          <span class="tutor-card-price">$</span>
+        </div>
+        <a href="#" class="tutor-card-link">View Profile</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== SUBJECTS ==================== -->
+<div class="subjects-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-label">Subjects</div>
+      <h2 class="section-title">Whatever They're Studying,<br>We've Got a Teacher for It</h2>
+      <p class="section-desc">From elementary reading to AP exams and everything in between.</p>
+    </div>
+    <div class="subjects-grid">
+      <div class="subject-chip">
+        <div class="subject-chip-icon">📐</div>
+        <div class="subject-chip-name">Mathematics</div>
+      </div>
+      <div class="subject-chip">
+        <div class="subject-chip-icon">📖</div>
+        <div class="subject-chip-name">English & ELA</div>
+      </div>
+      <div class="subject-chip">
+        <div class="subject-chip-icon">🔬</div>
+        <div class="subject-chip-name">Sciences</div>
+      </div>
+      <div class="subject-chip">
+        <div class="subject-chip-icon">🌍</div>
+        <div class="subject-chip-name">Social Studies</div>
+      </div>
+      <div class="subject-chip">
+        <div class="subject-chip-icon">🌐</div>
+        <div class="subject-chip-name">World Languages</div>
+      </div>
+      <div class="subject-chip">
+        <div class="subject-chip-icon">📝</div>
+        <div class="subject-chip-name">SAT & ACT Prep</div>
+      </div>
+      <div class="subject-chip">
+        <div class="subject-chip-icon">🎓</div>
+        <div class="subject-chip-name">AP Courses</div>
+      </div>
+      <div class="subject-chip">
+        <div class="subject-chip-icon">🧩</div>
+        <div class="subject-chip-name">Special Education</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TOWNS ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-label">Our Coverage</div>
+    <h2 class="section-title">Serving All of Bergen County</h2>
+    <p class="section-desc">Find tutors in your town or nearby. Every community in Bergen County is part of our network.</p>
+  </div>
+  <div class="towns-grid">
+    <span class="town-pill">Allendale</span>
+    <span class="town-pill">Alpine</span>
+    <span class="town-pill">Bergenfield</span>
+    <span class="town-pill">Bogota</span>
+    <span class="town-pill">Cliffside Park</span>
+    <span class="town-pill">Closter</span>
+    <span class="town-pill">Cresskill</span>
+    <span class="town-pill">Demarest</span>
+    <span class="town-pill">Dumont</span>
+    <span class="town-pill">Elmwood Park</span>
+    <span class="town-pill">Emerson</span>
+    <span class="town-pill">Englewood</span>
+    <span class="town-pill">Fair Lawn</span>
+    <span class="town-pill">Fort Lee</span>
+    <span class="town-pill">Franklin Lakes</span>
+    <span class="town-pill">Garfield</span>
+    <span class="town-pill">Glen Rock</span>
+    <span class="town-pill">Hackensack</span>
+    <span class="town-pill">Harrington Park</span>
+    <span class="town-pill">Hasbrouck Heights</span>
+    <span class="town-pill">Haworth</span>
+    <span class="town-pill">Hillsdale</span>
+    <span class="town-pill">Ho-Ho-Kus</span>
+    <span class="town-pill">Leonia</span>
+    <span class="town-pill">Lodi</span>
+    <span class="town-pill">Mahwah</span>
+    <span class="town-pill">Maywood</span>
+    <span class="town-pill">Midland Park</span>
+    <span class="town-pill">Montvale</span>
+    <span class="town-pill">New Milford</span>
+    <span class="town-pill">Northvale</span>
+    <span class="town-pill">Norwood</span>
+    <span class="town-pill">Oakland</span>
+    <span class="town-pill">Old Tappan</span>
+    <span class="town-pill">Oradell</span>
+    <span class="town-pill">Palisades Park</span>
+    <span class="town-pill">Paramus</span>
+    <span class="town-pill">Park Ridge</span>
+    <span class="town-pill">Ramsey</span>
+    <span class="town-pill">Ridgefield</span>
+    <span class="town-pill">Ridgewood</span>
+    <span class="town-pill">River Edge</span>
+    <span class="town-pill">River Vale</span>
+    <span class="town-pill">Rochelle Park</span>
+    <span class="town-pill">Rutherford</span>
+    <span class="town-pill">Saddle Brook</span>
+    <span class="town-pill">Saddle River</span>
+    <span class="town-pill">Teaneck</span>
+    <span class="town-pill">Tenafly</span>
+    <span class="town-pill">Upper Saddle River</span>
+    <span class="town-pill">Waldwick</span>
+    <span class="town-pill">Wallington</span>
+    <span class="town-pill">Washington Twp</span>
+    <span class="town-pill">Westwood</span>
+    <span class="town-pill">Wood-Ridge</span>
+    <span class="town-pill">Woodcliff Lake</span>
+    <span class="town-pill">Wyckoff</span>
+  </div>
+</div>
+
+<!-- ==================== DUAL CTA ==================== -->
+<section class="cta-section">
+  <div class="cta-bg-ring"></div>
+  <div class="cta-bg-ring"></div>
+  <div class="cta-inner">
+    <div class="cta-card">
+      <h3>Looking for a Tutor?</h3>
+      <p>Browse verified educators in your town. Search by subject, grade level, and availability. It's free for families — always.</p>
+      <a href="bergen-tutors-search-results-v1.html" class="btn btn-gold">Find a Tutor</a>
+    </div>
+    <div class="cta-card">
+      <h3>Are You an Educator?</h3>
+      <p>Join Bergen County's trusted tutoring network. List your profile, set your own rates, and connect with local families. Plans start at $19/month.</p>
+      <a href="#" class="btn btn-outline">List Your Profile →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <svg class="footer-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="96" fill="none" stroke="#c8a455" stroke-width="3"/>
+          <circle cx="100" cy="100" r="88" fill="none" stroke="#c8a455" stroke-width="1.5"/>
+          <circle cx="100" cy="100" r="85" fill="#1a2744"/>
+          <circle cx="100" cy="6" r="3" fill="#c8a455"/>
+          <circle cx="100" cy="194" r="3" fill="#c8a455"/>
+          <circle cx="6" cy="100" r="3" fill="#c8a455"/>
+          <circle cx="194" cy="100" r="3" fill="#c8a455"/>
+          <defs>
+            <path id="topArc3" d="M 30,100 a 70,70 0 0,1 140,0" fill="none"/>
+            <path id="bottomArc3" d="M 170,100 a 70,70 0 0,1 -140,0" fill="none"/>
+          </defs>
+          <text font-family="serif" font-size="13" fill="#c8a455" letter-spacing="5" font-weight="600">
+            <textPath href="#topArc3" startOffset="50%" text-anchor="middle">BERGEN TUTORS</textPath>
+          </text>
+          <text font-family="serif" font-size="11" fill="#c8a455" letter-spacing="4" font-style="italic">
+            <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">DOCENDO DISCIMUS</textPath>
+          </text>
+          <g transform="translate(100, 95)" fill="none" stroke="#c8a455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M -28,12 L -28,-8 C -28,-8 -14,-14 0,-8 C 14,-14 28,-8 28,-8 L 28,12"/>
+            <line x1="0" y1="-8" x2="0" y2="12"/>
+            <path d="M -28,12 C -14,6 0,12 0,12 C 0,12 14,6 28,12"/>
+            <line x1="0" y1="-8" x2="0" y2="-22"/>
+            <path d="M -5,-26 C -5,-32 0,-36 0,-36 C 0,-36 5,-32 5,-26 C 5,-22 0,-20 0,-20 C 0,-20 -5,-22 -5,-26 Z" fill="#c8a455" stroke="none"/>
+          </g>
+        </svg>
+        <div>
+          <div class="footer-name">Bergen Tutors</div>
+          <div class="footer-motto">Docendo Discimus</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>For Families</h4>
+        <a href="bergen-tutors-search-results-v1.html">Find a Tutor</a>
+        <a href="#">Browse by Town</a>
+        <a href="#">Browse by Subject</a>
+        <a href="#">How It Works</a>
+      </div>
+      <div class="footer-col">
+        <h4>For Educators</h4>
+        <a href="#">List Your Profile</a>
+        <a href="#">Pricing</a>
+        <a href="#">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 Bergen Tutors. All rights reserved. Bergen County, New Jersey.
+  </div>
+</footer>
+
+<script>
+var HERO_SUBJECTS = [
+  'Algebra I','Algebra II','Pre-Calculus','Calculus','AP Calculus AB','AP Calculus BC',
+  'Geometry','Statistics','AP Statistics','SAT Math','SAT Reading & Writing','SAT (Full)',
+  'ACT Math','ACT (Full)','Biology','AP Biology','Chemistry','AP Chemistry',
+  'Physics','AP Physics 1','AP Physics C','English','AP English Language',
+  'AP English Literature','Reading','Writing','Essay Writing','US History',
+  'AP US History','World History','AP World History','AP Government','Spanish',
+  'French','Mandarin','Latin','Computer Science','AP Computer Science A',
+  'Economics','AP Economics','Psychology','AP Psychology','Special Education / Learning Support'
+];
+
+function heroFilter(val) {
+  var box = document.getElementById('heroSuggestions');
+  if (!val || val.length < 1) { box.style.display = 'none'; return; }
+  var q = val.toLowerCase();
+  var matches = HERO_SUBJECTS.filter(function(s) { return s.toLowerCase().indexOf(q) !== -1; }).slice(0, 6);
+  if (!matches.length) { box.style.display = 'none'; return; }
+  box.innerHTML = matches.map(function(s) {
+    return '<div onclick="heroSelectSubject(\'' + s.replace(/'/g,"\\'") + '\')" style="padding:0.55rem 1rem;cursor:pointer;font-size:0.88rem;color:#2c2c2c;border-bottom:1px solid #e5e2dc;">' + s + '</div>';
+  }).join('');
+  box.style.display = '';
+}
+
+function heroSelectSubject(s) {
+  document.getElementById('heroSubject').value = s;
+  document.getElementById('heroSuggestions').style.display = 'none';
+}
+
+function heroSearch() {
+  window.location.href = 'bergen-tutors-search-results-v1.html';
+}
+
+document.addEventListener('click', function(e) {
+  var wrap = document.getElementById('heroSubject');
+  if (wrap && !wrap.contains(e.target)) {
+    document.getElementById('heroSuggestions').style.display = 'none';
+  }
+});
+</script>
+</body>
+</html>

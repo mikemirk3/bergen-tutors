@@ -1,0 +1,3195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bergen Tutors - Educator Sign-Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-mid: #243456;
+    --navy-light: #2a3d62;
+    --gold: #c8a455;
+    --gold-dark: #a8873a;
+    --gold-light: #f5edda;
+    --cream: #faf8f4;
+    --white: #ffffff;
+    --text: #2c2c2c;
+    --text-light: #6b7280;
+    --green: #2d8a5e;
+    --green-light: #e8f5ee;
+    --red: #c0392b;
+    --red-light: #fdecea;
+    --border: #e5e2dc;
+    --shadow: 0 2px 16px rgba(26, 39, 68, 0.08);
+    --shadow-lg: 0 8px 32px rgba(26, 39, 68, 0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--navy);
+    padding: 0 2rem;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--gold);
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+  }
+  .nav-logo-seal { width: 46px; height: 46px; flex-shrink: 0; }
+  .nav-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .nav-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .nav-subtitle {
+    font-size: 0.62rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-weight: 600;
+  }
+  .nav-back {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--white); }
+
+  /* LAYOUT */
+  .signup-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* HEADER */
+  .signup-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .signup-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .signup-header p {
+    font-size: 1rem;
+    color: var(--text-light);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    align-items: center;
+  }
+  .progress-step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .progress-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.3s;
+    border: 2px solid var(--border);
+    background: var(--white);
+    color: var(--text-light);
+  }
+  .progress-dot.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--gold);
+  }
+  .progress-dot.completed {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--white);
+  }
+  .progress-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-light);
+    display: none;
+  }
+  .progress-step.active .progress-label,
+  .progress-step.completed .progress-label {
+    color: var(--navy);
+  }
+  .progress-line {
+    width: 40px;
+    height: 2px;
+    background: var(--border);
+    transition: background 0.3s;
+  }
+  .progress-line.completed { background: var(--green); }
+
+  /* FORM CARD */
+  .form-card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .form-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: var(--navy);
+    margin-bottom: 0.35rem;
+  }
+  .form-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* FORM ELEMENTS */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .form-row-3 {
+    grid-template-columns: 120px 1fr 1fr;
+  }
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+  .form-group label .optional {
+    font-weight: 400;
+    color: var(--text-light);
+    font-size: 0.8rem;
+  }
+  .form-group label .privacy-note {
+    font-weight: 400;
+    color: var(--text-light);
+    font-size: 0.78rem;
+    font-style: italic;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.92rem;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: var(--white);
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(26, 39, 68, 0.08);
+  }
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+  .form-hint {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-top: 0.3rem;
+    line-height: 1.5;
+  }
+  .form-hint a {
+    color: var(--navy);
+  }
+
+  /* HEADLINE AUTO-FILL */
+  .headline-row {
+    position: relative;
+  }
+  .headline-row input {
+    padding-right: 6.5rem;
+  }
+  .headline-meta {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    pointer-events: none;
+  }
+  .headline-counter {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+  }
+  .headline-counter.warn { color: var(--gold-dark); }
+  .headline-counter.over { color: #c0392b; }
+  .headline-regen {
+    pointer-events: auto;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    color: var(--navy);
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s, background 0.15s, transform 0.3s;
+    flex-shrink: 0;
+  }
+  .headline-regen:hover {
+    border-color: var(--navy);
+    background: var(--white);
+  }
+  .headline-regen.spinning {
+    transform: rotate(360deg);
+  }
+  .headline-regen svg {
+    width: 14px;
+    height: 14px;
+  }
+  .alt-headlines {
+    margin-top: 0.65rem;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem 0.85rem;
+  }
+  .alt-headlines-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+    font-weight: 600;
+    margin-bottom: 0.55rem;
+  }
+  .alt-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .alt-option {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.88rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    text-align: left;
+    font-family: inherit;
+    line-height: 1.4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .alt-option:hover {
+    border-color: var(--gold);
+    background: var(--gold-light);
+  }
+  .alt-option-use {
+    font-size: 0.72rem;
+    color: var(--gold-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+  .alt-option:hover .alt-option-use {
+    opacity: 1;
+  }
+
+  /* LANGUAGE MULTI-SELECT */
+  .lang-select {
+    position: relative;
+  }
+  .lang-trigger {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.65rem 2.25rem 0.65rem 0.85rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    transition: border-color 0.15s;
+    position: relative;
+  }
+  .lang-trigger:hover { border-color: var(--navy-light); }
+  .lang-trigger.open { border-color: var(--navy); }
+  .lang-trigger::after {
+    content: '';
+    position: absolute;
+    right: 0.95rem;
+    top: 50%;
+    transform: translateY(-30%) rotate(45deg);
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid var(--text-light);
+    border-bottom: 2px solid var(--text-light);
+    transition: transform 0.18s;
+  }
+  .lang-trigger.open::after {
+    transform: translateY(-15%) rotate(-135deg);
+  }
+  .lang-placeholder {
+    color: var(--text-light);
+    font-style: italic;
+  }
+  .lang-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--gold-light);
+    color: var(--navy);
+    padding: 0.2rem 0.55rem 0.2rem 0.65rem;
+    border-radius: 14px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1.3;
+    border: 1px solid rgba(200, 164, 85, 0.4);
+  }
+  .lang-pill-x {
+    background: none;
+    border: none;
+    color: var(--navy);
+    cursor: pointer;
+    padding: 0;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: opacity 0.12s;
+  }
+  .lang-pill-x:hover { opacity: 1; }
+  .lang-pill-x svg { width: 10px; height: 10px; }
+  .lang-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(26, 39, 68, 0.12);
+    max-height: 280px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+    padding: 0.35rem;
+  }
+  .lang-dropdown.open { display: block; }
+  .lang-option {
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.1s;
+    user-select: none;
+  }
+  .lang-option:hover { background: var(--cream); }
+  .lang-option.selected {
+    background: var(--gold-light);
+    color: var(--navy);
+    font-weight: 600;
+  }
+  .lang-option .check-mark {
+    color: var(--gold-dark);
+    opacity: 0;
+    transition: opacity 0.12s;
+  }
+  .lang-option.selected .check-mark { opacity: 1; }
+  .lang-other-input {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-family: inherit;
+    background: var(--cream);
+  }
+  .lang-other-input:focus {
+    outline: none;
+    border-color: var(--navy);
+  }
+
+  /* DEGREES AUTOCOMPLETE */
+  .degrees-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .degree-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 150px 1fr 36px;
+    gap: 0.5rem;
+    align-items: start;
+  }
+  .degree-input-wrap {
+    position: relative;
+  }
+  .degree-input,
+  .degree-level-select {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.92rem;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.15s;
+    height: 44px;
+  }
+  .degree-input:focus,
+  .degree-level-select:focus {
+    outline: none;
+    border-color: var(--navy);
+  }
+  .degree-level-select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    padding-right: 2rem;
+  }
+  .degree-suggestions {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(26, 39, 68, 0.14);
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 50;
+    display: none;
+    padding: 0.3rem;
+  }
+  .degree-suggestions.open { display: block; }
+  .degree-suggest-item {
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: var(--text);
+    transition: background 0.1s;
+    line-height: 1.4;
+  }
+  .degree-suggest-item:hover,
+  .degree-suggest-item.active {
+    background: var(--gold-light);
+    color: var(--navy);
+  }
+  .degree-suggest-item .match-bold {
+    font-weight: 700;
+  }
+  .degree-suggest-item .suggest-meta {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 0.1rem;
+  }
+  .degree-remove {
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    color: var(--text-light);
+    width: 36px;
+    height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    align-self: start;
+  }
+  .degree-remove:hover {
+    border-color: var(--red, #c0392b);
+    color: var(--red, #c0392b);
+    background: var(--red-light, #fdecea);
+  }
+  .degree-remove svg { width: 14px; height: 14px; }
+  .add-degree-btn {
+    margin-top: 0.5rem;
+    background: none;
+    border: 1.5px dashed var(--border);
+    color: var(--navy);
+    padding: 0.55rem 0.95rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .add-degree-btn:hover {
+    border-color: var(--gold);
+    background: var(--gold-light);
+    border-style: solid;
+  }
+  .add-degree-btn svg { width: 14px; height: 14px; }
+
+  @media (max-width: 700px) {
+    .degree-row {
+      grid-template-columns: 1fr 36px;
+      gap: 0.5rem;
+    }
+    .degree-row .degree-level-select { grid-column: 1 / -2; }
+    .degree-row .degree-input-wrap.field { grid-column: 1 / -2; }
+    .degree-row .degree-remove { grid-row: 1; grid-column: 2; }
+  }
+
+  /* DISPLAY NAME PREVIEW */
+  .name-preview {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .name-preview-label {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-weight: 500;
+  }
+  .name-preview-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* CHECKBOXES & TAGS */
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  .checkbox-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .checkbox-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .check-item:hover {
+    border-color: var(--navy);
+    background: rgba(26, 39, 68, 0.02);
+  }
+  .check-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--navy);
+    cursor: pointer;
+  }
+  .check-item.selected {
+    border-color: var(--navy);
+    background: var(--navy-pale, rgba(26, 39, 68, 0.05));
+  }
+
+  /* RADIO CARDS */
+  .radio-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  .radio-card {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .radio-card:hover {
+    border-color: var(--navy);
+    transform: translateY(-2px);
+  }
+  .radio-card.selected {
+    border-color: var(--gold);
+    background: var(--gold-light);
+  }
+  .radio-card input { display: none; }
+  .radio-card-symbol {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold-dark);
+    letter-spacing: 2px;
+    margin-bottom: 0.25rem;
+  }
+  .radio-card-label {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-weight: 500;
+  }
+
+  /* SCHOOL ENTRY */
+  .school-entry-group {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .school-entry-group .form-group {
+    margin-bottom: 1rem;
+  }
+  .school-entry-group .form-group:last-child {
+    margin-bottom: 0;
+  }
+  .school-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .school-entry-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+  }
+  .remove-btn {
+    font-size: 0.8rem;
+    color: var(--red);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+  }
+  .add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.88rem;
+    color: var(--navy);
+    background: none;
+    border: 1.5px dashed var(--border);
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+    justify-content: center;
+  }
+  .add-btn:hover {
+    border-color: var(--navy);
+    background: rgba(26, 39, 68, 0.03);
+  }
+
+  /* TOWN MULTI-SELECT */
+  .town-select-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    background: var(--white);
+  }
+  .town-chip {
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .town-chip:hover {
+    border-color: var(--navy);
+  }
+  .town-chip.selected {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+  }
+
+  /* AVAILABILITY EDITOR (weekly grid) */
+  .av-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .av-legend {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-size: 0.82rem;
+    color: var(--text-light);
+  }
+  .av-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .av-legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+  .av-legend-swatch.available { background: var(--gold); border-color: var(--gold-dark); }
+  .av-legend-swatch.unavailable { background: var(--white); }
+
+  .av-toolbar-right {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .av-tool-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--white);
+    color: var(--navy);
+    border: 1.5px solid var(--border);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .av-tool-btn:hover {
+    border-color: var(--navy);
+    background: rgba(26, 39, 68, 0.02);
+  }
+  .av-tool-btn.danger { color: var(--red, #c0392b); }
+  .av-tool-btn.danger:hover {
+    border-color: var(--red, #c0392b);
+    background: var(--red-light, #fdecea);
+  }
+
+  .av-range-toggle {
+    display: inline-flex;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 2px;
+    font-size: 0.8rem;
+  }
+  .av-range-toggle button {
+    background: transparent;
+    border: none;
+    padding: 0.4rem 0.85rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .av-range-toggle button.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .av-grid-hint {
+    background: rgba(200, 164, 85, 0.1);
+    border-left: 3px solid var(--gold);
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.5;
+    border-radius: 0 6px 6px 0;
+  }
+  .av-grid-hint strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  .av-grid-wrap {
+    position: relative;
+    overflow-x: auto;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .av-grid {
+    display: grid;
+    grid-template-columns: 70px repeat(7, 1fr);
+    gap: 2px;
+    min-width: 680px;
+    background: var(--border);
+    padding: 2px;
+    border-radius: 8px;
+  }
+  .av-grid-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 0.65rem 0.25rem;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+  }
+  .av-grid-header.corner {
+    background: var(--navy-mid, #243456);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+  .av-grid-header .day-full {
+    display: block;
+    font-size: 0.68rem;
+    opacity: 0.7;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-top: 0.1rem;
+  }
+  .av-grid-header.weekend { background: var(--navy-light, #2a3d62); }
+
+  .av-time-label {
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.6rem;
+    font-size: 0.72rem;
+    color: var(--text-light);
+    font-weight: 500;
+    border-radius: 4px;
+  }
+  .av-time-label.half { color: transparent; }
+
+  .av-cell {
+    background: var(--white);
+    min-height: 26px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.08s;
+    position: relative;
+  }
+  .av-cell:hover { background: var(--gold-light); }
+  .av-cell.available { background: var(--gold); }
+  .av-cell.available:hover { background: var(--gold-dark); }
+  .av-cell.hour-start { border-top: 1px solid rgba(26, 39, 68, 0.06); }
+
+  .av-quick-actions {
+    margin-top: 1.25rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .av-quick-actions-label {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-right: 0.25rem;
+  }
+  .av-quick-chip {
+    padding: 0.4rem 0.85rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+    color: var(--navy);
+  }
+  .av-quick-chip:hover {
+    border-color: var(--gold);
+    background: var(--gold-light);
+  }
+
+  .av-summary-bar {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .av-summary-stats {
+    display: flex;
+    gap: 2.5rem;
+  }
+  .av-summary-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .av-summary-stat-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.2rem;
+  }
+  .av-summary-message {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 260px;
+    text-align: right;
+  }
+
+  .av-tooltip {
+    position: fixed;
+    background: var(--navy);
+    color: var(--white);
+    padding: 0.35rem 0.7rem;
+    border-radius: 5px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    pointer-events: none;
+    z-index: 1000;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.12s;
+  }
+  .av-tooltip.visible { opacity: 1; }
+
+  /* SEASONAL TOGGLES */
+  .av-seasonal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .av-season {
+    padding: 1.1rem 1.25rem;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: var(--cream);
+  }
+  .av-season-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+  }
+  .av-season-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--navy);
+    font-weight: 600;
+  }
+  .av-season-desc {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+  .av-season-note {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    background: var(--white);
+    resize: vertical;
+    min-height: 50px;
+    line-height: 1.5;
+  }
+  .av-season-note:focus {
+    outline: none;
+    border-color: var(--navy);
+  }
+  .av-toggle {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  .av-toggle input { opacity: 0; width: 0; height: 0; }
+  .av-toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .av-toggle-slider::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: var(--white);
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .av-toggle input:checked + .av-toggle-slider {
+    background: var(--green, #2d8a5e);
+  }
+  .av-toggle input:checked + .av-toggle-slider::before {
+    transform: translateX(18px);
+  }
+
+  @media (max-width: 640px) {
+    .av-seasonal { grid-template-columns: 1fr; }
+    .av-summary-stats { gap: 1.5rem; }
+    .av-summary-stat-num { font-size: 1.3rem; }
+    .av-grid-header .day-full { display: none; }
+  }
+
+  /* INFO BOX */
+  .info-box {
+    background: var(--gold-light);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .info-box-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--gold-dark);
+    margin-top: 0.1rem;
+  }
+  .info-box p {
+    font-size: 0.88rem;
+    color: #6b5a2e;
+    line-height: 1.6;
+  }
+
+  /* BUTTONS */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.8rem 1.75rem;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .btn-navy {
+    background: var(--navy);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(26, 39, 68, 0.2);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--navy); }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+    box-shadow: 0 4px 12px rgba(200, 164, 85, 0.3);
+  }
+  .btn-ghost {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    padding: 0.8rem 1rem;
+  }
+
+  /* STEP VISIBILITY */
+  .step { display: none; }
+  .step.active { display: block; }
+
+  /* REVIEW SECTION */
+  .review-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .review-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .review-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .review-edit {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--gold-dark);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .review-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+  }
+  .review-label { color: var(--text-light); }
+  .review-value { color: var(--text); font-weight: 500; text-align: right; max-width: 60%; }
+  .review-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: flex-end;
+    max-width: 60%;
+  }
+  .review-tag {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.55rem;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  /* TOS */
+  .tos-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--cream);
+    border-radius: 8px;
+  }
+  .tos-check input {
+    width: 18px;
+    height: 18px;
+    margin-top: 0.15rem;
+    accent-color: var(--navy);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .tos-check label {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.6;
+    cursor: pointer;
+  }
+  .tos-check a { color: var(--navy); }
+
+  /* SUCCESS STATE */
+  .success-card {
+    text-align: center;
+    padding: 3rem 2.5rem;
+  }
+  .success-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--green-light);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .success-icon svg { width: 36px; height: 36px; color: var(--green); }
+  .success-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .success-card p {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    max-width: 440px;
+    margin: 0 auto 2rem;
+  }
+  .success-details {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .success-details h4 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+  .success-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    font-size: 0.88rem;
+  }
+  .success-detail-row svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .form-row, .form-row-3 { grid-template-columns: 1fr; }
+    .checkbox-grid { grid-template-columns: repeat(2, 1fr); }
+    .checkbox-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .radio-cards { grid-template-columns: 1fr; }
+    .town-select-grid { grid-template-columns: repeat(3, 1fr); }
+    .form-card { padding: 1.5rem; }
+    .signup-header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <svg class="nav-logo-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="96" fill="none" stroke="#c8a455" stroke-width="3"/>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="#c8a455" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="85" fill="#1a2744"/>
+      <circle cx="100" cy="6" r="3" fill="#c8a455"/>
+      <circle cx="100" cy="194" r="3" fill="#c8a455"/>
+      <circle cx="6" cy="100" r="3" fill="#c8a455"/>
+      <circle cx="194" cy="100" r="3" fill="#c8a455"/>
+      <defs>
+        <path id="topArc" d="M 30,100 a 70,70 0 0,1 140,0" fill="none"/>
+        <path id="bottomArc" d="M 170,100 a 70,70 0 0,1 -140,0" fill="none"/>
+      </defs>
+      <text font-family="'Playfair Display', serif" font-size="13" fill="#c8a455" letter-spacing="5" font-weight="600">
+        <textPath href="#topArc" startOffset="50%" text-anchor="middle">BERGEN TUTORS</textPath>
+      </text>
+      <text font-family="'Playfair Display', serif" font-size="11" fill="#c8a455" letter-spacing="4" font-style="italic">
+        <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">DOCENDO DISCIMUS</textPath>
+      </text>
+      <g transform="translate(100, 95)" fill="none" stroke="#c8a455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M -28,12 L -28,-8 C -28,-8 -14,-14 0,-8 C 14,-14 28,-8 28,-8 L 28,12"/>
+        <line x1="0" y1="-8" x2="0" y2="12"/>
+        <path d="M -28,12 C -14,6 0,12 0,12 C 0,12 14,6 28,12"/>
+        <line x1="0" y1="-8" x2="0" y2="-22"/>
+        <path d="M -5,-26 C -5,-32 0,-36 0,-36 C 0,-36 5,-32 5,-26 C 5,-22 0,-20 0,-20 C 0,-20 -5,-22 -5,-26 Z" fill="#c8a455" stroke="none"/>
+        <line x1="-8" y1="-30" x2="-12" y2="-34" stroke-width="1.5"/>
+        <line x1="8" y1="-30" x2="12" y2="-34" stroke-width="1.5"/>
+        <line x1="-10" y1="-24" x2="-15" y2="-24" stroke-width="1.5"/>
+        <line x1="10" y1="-24" x2="15" y2="-24" stroke-width="1.5"/>
+      </g>
+      <g fill="#c8a455">
+        <polygon points="40,100 42,95 44,100 42,105"/>
+        <polygon points="156,100 158,95 160,100 158,105"/>
+      </g>
+      <circle cx="100" cy="100" r="55" fill="none" stroke="#c8a455" stroke-width="0.75" stroke-dasharray="2,4"/>
+    </svg>
+    <div class="nav-text">
+      <span class="nav-title">Bergen Tutors</span>
+      <span class="nav-subtitle">Docendo Discimus</span>
+    </div>
+  </a>
+  <a href="#" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="signup-container">
+
+  <!-- HEADER -->
+  <div class="signup-header">
+    <h1>Join Bergen Tutors</h1>
+    <p>List your profile and connect with families in Bergen County who are looking for exactly what you offer.</p>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar" id="progressBar">
+    <div class="progress-step active" data-step="1">
+      <div class="progress-dot active">1</div>
+    </div>
+    <div class="progress-line" id="line1"></div>
+    <div class="progress-step" data-step="2">
+      <div class="progress-dot">2</div>
+    </div>
+    <div class="progress-line" id="line2"></div>
+    <div class="progress-step" data-step="3">
+      <div class="progress-dot">3</div>
+    </div>
+    <div class="progress-line" id="line3"></div>
+    <div class="progress-step" data-step="4">
+      <div class="progress-dot">4</div>
+    </div>
+    <div class="progress-line" id="line4"></div>
+    <div class="progress-step" data-step="5">
+      <div class="progress-dot">5</div>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 1: ACCOUNT ==================== -->
+  <div class="step active" id="step1">
+    <div class="form-card">
+      <h2 class="form-card-title">Account & Display Name</h2>
+      <p class="form-card-desc">Let's start with the basics. Your legal name is used for credential verification only and will never be shown publicly.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name *</label>
+          <input type="text" placeholder="Sarah" id="firstName">
+        </div>
+        <div class="form-group">
+          <label>Last Name *</label>
+          <input type="text" placeholder="Mitchell" id="lastName">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" placeholder="you@email.com">
+        <div class="form-hint">We'll send tutor inquiries and account notifications here.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number <span class="optional">(optional)</span></label>
+        <input type="tel" placeholder="(201) 555-0000">
+        <div class="form-hint">🔒 Your phone number will <strong>never</strong> be displayed on your profile or shared with families. It is for internal account purposes only.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Create Password *</label>
+        <input type="password" placeholder="At least 8 characters">
+      </div>
+
+      <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 0.5rem;">
+        <label style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem;">How should families see your name? *</label>
+        <div class="form-row" style="margin-bottom: 0;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <select id="honorific">
+              <option value="" disabled selected>Title</option>
+              <option value="Mr.">Mr.</option>
+              <option value="Mrs.">Mrs.</option>
+              <option value="Ms.">Ms.</option>
+              <option value="Dr.">Dr.</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <input type="text" placeholder="Last Name" id="displayLast" value="">
+            <div class="form-hint">Auto-filled from above - edit if different.</div>
+          </div>
+        </div>
+        <div class="name-preview" id="namePreview" style="display: none;">
+          <span class="name-preview-label">Parents will see:</span>
+          <span class="name-preview-value" id="namePreviewValue">Mrs. Mitchell</span>
+        </div>
+      </div>
+
+      <div class="form-actions" style="margin-top: 2rem;">
+        <span></span>
+        <button class="btn btn-navy" onclick="goToStep(2)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 2: CREDENTIALS ==================== -->
+  <div class="step" id="step2">
+    <div class="form-card">
+      <h2 class="form-card-title">Credentials & Employment</h2>
+      <p class="form-card-desc">We verify every educator against the NJ Department of Education database before your profile goes live.</p>
+
+      <div class="info-box">
+        <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <p>Your certification will be verified through the <a href="https://www.njdoe.state.nj.us" target="_blank">NJDOE public database</a> using your legal name. This typically takes 24-48 hours.</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Teaching Status *</label>
+          <select>
+            <option value="" disabled selected>Select status</option>
+            <option>Active - currently teaching</option>
+            <option>Retired</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Years of Experience *</label>
+          <select>
+            <option value="" disabled selected>Select range</option>
+            <option>1-3 years</option>
+            <option>4-7 years</option>
+            <option>8-14 years</option>
+            <option>15-24 years</option>
+            <option>25+ years</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Certification Type *</label>
+          <select>
+            <option value="" disabled selected>Select type</option>
+            <option>Certificate of Eligibility (CE)</option>
+            <option>CE with Advanced Standing (CEAS)</option>
+            <option>Standard Certificate</option>
+            <option>Other / Expired</option>
+          </select>
+        </div>
+        <div class="form-group">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Endorsement Area(s) * <span class="optional">-- select all that apply</span></label>
+        <div class="checkbox-grid checkbox-grid-2">
+          <label class="check-item"><input type="checkbox"> Mathematics</label>
+          <label class="check-item"><input type="checkbox"> English / Language Arts</label>
+          <label class="check-item"><input type="checkbox"> Elementary Education (K-6)</label>
+          <label class="check-item"><input type="checkbox"> Special Education</label>
+          <label class="check-item"><input type="checkbox"> Biological Science</label>
+          <label class="check-item"><input type="checkbox"> Chemistry</label>
+          <label class="check-item"><input type="checkbox"> Physics</label>
+          <label class="check-item"><input type="checkbox"> Social Studies</label>
+          <label class="check-item"><input type="checkbox"> World Languages - Spanish</label>
+          <label class="check-item"><input type="checkbox"> World Languages - French</label>
+          <label class="check-item"><input type="checkbox"> World Languages - Italian</label>
+          <label class="check-item"><input type="checkbox"> World Languages - Other</label>
+          <label class="check-item"><input type="checkbox"> Reading Specialist</label>
+          <label class="check-item"><input type="checkbox"> ESL / Bilingual</label>
+          <label class="check-item"><input type="checkbox"> Computer Science</label>
+          <label class="check-item"><input type="checkbox"> Music / Arts</label>
+        </div>
+        <div style="margin-top: 0.75rem;">
+          <label style="font-size: 0.85rem; font-weight: 600; color: var(--text); display: block; margin-bottom: 0.35rem;">Other endorsement not listed? <span class="optional">(optional)</span></label>
+          <input type="text" placeholder="e.g., Business Education, Health and PE, Technology Ed">
+        </div>
+        <div class="form-hint" style="margin-top: 0.4rem;">Select the endorsement(s) as listed on your NJ certificate. We will verify against the NJDOE database.</div>
+      </div>
+
+      <!-- Current School -->
+      <div class="school-entry-group">
+        <div class="school-entry-header">
+          <span class="school-entry-label">Current School</span>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label>School Name <span class="optional">(leave blank if retired)</span></label>
+            <input type="text" placeholder="e.g., Ridgewood High School">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label>District</label>
+            <input type="text" placeholder="e.g., Ridgewood Public Schools">
+          </div>
+        </div>
+      </div>
+
+      <!-- Former Schools -->
+      <div class="school-entry-group">
+        <div class="school-entry-header">
+          <span class="school-entry-label">Former School</span>
+          <button class="remove-btn">Remove</button>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label>School Name</label>
+            <input type="text" placeholder="e.g., Glen Rock Middle School">
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label>District</label>
+            <input type="text" placeholder="e.g., Glen Rock Public Schools">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label>Years</label>
+            <input type="text" placeholder="e.g., 2014-2019">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;"></div>
+        </div>
+      </div>
+
+      <button class="add-btn">+ Add Another Former School</button>
+
+      <div class="form-actions" style="margin-top: 2rem;">
+        <button class="btn btn-ghost" onclick="goToStep(1)">← Back</button>
+        <button class="btn btn-navy" onclick="goToStep(3)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 3: TUTORING DETAILS ==================== -->
+  <div class="step" id="step3">
+    <div class="form-card">
+      <h2 class="form-card-title">Tutoring Details</h2>
+      <p class="form-card-desc">Tell families what you teach, how you tutor, and where you are available.</p>
+
+      <!-- Subjects -->
+      <div class="form-group">
+        <label>Subjects You Tutor *</label>
+        <div class="checkbox-grid">
+          <label class="check-item"><input type="checkbox"> Pre-Algebra</label>
+          <label class="check-item"><input type="checkbox"> Algebra I</label>
+          <label class="check-item"><input type="checkbox"> Algebra II</label>
+          <label class="check-item"><input type="checkbox"> Geometry</label>
+          <label class="check-item"><input type="checkbox"> Pre-Calculus</label>
+          <label class="check-item"><input type="checkbox"> Calculus</label>
+          <label class="check-item"><input type="checkbox"> Math K-5</label>
+          <label class="check-item"><input type="checkbox"> Math 6-8</label>
+          <label class="check-item"><input type="checkbox"> English/ELA</label>
+          <label class="check-item"><input type="checkbox"> Reading K-5</label>
+          <label class="check-item"><input type="checkbox"> Essay Writing</label>
+          <label class="check-item"><input type="checkbox"> Biology</label>
+          <label class="check-item"><input type="checkbox"> Chemistry</label>
+          <label class="check-item"><input type="checkbox"> Physics</label>
+          <label class="check-item"><input type="checkbox"> Earth Science</label>
+          <label class="check-item"><input type="checkbox"> U.S. History</label>
+          <label class="check-item"><input type="checkbox"> World History</label>
+          <label class="check-item"><input type="checkbox"> Spanish</label>
+          <label class="check-item"><input type="checkbox"> French</label>
+          <label class="check-item"><input type="checkbox"> Italian</label>
+          <label class="check-item"><input type="checkbox"> SAT Prep</label>
+          <label class="check-item"><input type="checkbox"> ACT Prep</label>
+          <label class="check-item"><input type="checkbox"> Study Skills</label>
+        </div>
+        <div class="form-hint" style="margin-top: 0.5rem;">Don't see your subject? You can add custom subjects in your profile later.</div>
+      </div>
+
+      <!-- Special Tags -->
+      <div class="form-group">
+        <label>Specializations <span class="optional">(optional)</span></label>
+        <div class="checkbox-grid checkbox-grid-2">
+          <label class="check-item"><input type="checkbox"> Special Education</label>
+          <label class="check-item"><input type="checkbox"> AP Courses</label>
+          <label class="check-item"><input type="checkbox"> ESL / ELL</label>
+          <label class="check-item"><input type="checkbox"> Gifted and Talented</label>
+        </div>
+      </div>
+
+      <!-- Grade Levels -->
+      <div class="form-group">
+        <label>Grade Levels *</label>
+        <div class="checkbox-grid checkbox-grid-4">
+          <label class="check-item"><input type="checkbox"> K-2</label>
+          <label class="check-item"><input type="checkbox"> 3-5</label>
+          <label class="check-item"><input type="checkbox"> 6-8</label>
+          <label class="check-item"><input type="checkbox"> 9-12</label>
+        </div>
+      </div>
+
+      <!-- Session Format -->
+      <div class="form-group">
+        <label>Session Format *</label>
+        <div class="radio-cards">
+          <label class="radio-card" onclick="selectFormat('inperson')">
+            <input type="radio" name="format" value="inperson">
+            <div class="radio-card-symbol" style="font-size: 1.3rem;">&#127968;</div>
+            <div class="radio-card-label">In-Person Only</div>
+          </label>
+          <label class="radio-card" onclick="selectFormat('virtual')">
+            <input type="radio" name="format" value="virtual">
+            <div class="radio-card-symbol" style="font-size: 1.3rem;">&#128187;</div>
+            <div class="radio-card-label">Virtual Only</div>
+          </label>
+          <label class="radio-card" onclick="selectFormat('both')">
+            <input type="radio" name="format" value="both">
+            <div class="radio-card-symbol" style="font-size: 1.3rem;">&#127968;+&#128187;</div>
+            <div class="radio-card-label">Both</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Virtual Note (shown for Virtual or Both) -->
+      <div class="info-box" id="virtualNote" style="display: none;">
+        <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <p>Virtual sessions make you available to families anywhere - not just Bergen County. Parents from neighboring counties and beyond can find and contact you through our directory.</p>
+      </div>
+
+      <!-- In-Person Service Area (shown for In-Person or Both) -->
+      <div id="serviceAreaSection" style="display: none;">
+        <div class="form-group">
+          <label>In-Person Service Area *</label>
+          <div class="form-hint" style="margin-bottom: 0.5rem;">Select the towns where you are willing to tutor in person.</div>
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <button type="button" class="add-btn" style="width: auto; padding: 0.45rem 1rem; font-size: 0.8rem;" onclick="selectAllTowns()">Select All</button>
+            <button type="button" class="add-btn" style="width: auto; padding: 0.45rem 1rem; font-size: 0.8rem;" onclick="selectNoTowns()">Clear All</button>
+          </div>
+          <div class="town-select-grid" id="townGrid">
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Allendale</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Alpine</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Bergenfield</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Bogota</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Cliffside Park</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Closter</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Cresskill</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Demarest</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Dumont</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Elmwood Park</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Emerson</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Englewood</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Fair Lawn</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Fort Lee</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Franklin Lakes</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Garfield</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Glen Rock</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Hackensack</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Harrington Park</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Hasbrouck Hts</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Haworth</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Hillsdale</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Ho-Ho-Kus</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Leonia</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Lodi</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Mahwah</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Maywood</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Midland Park</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Montvale</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">New Milford</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Northvale</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Norwood</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Oakland</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Old Tappan</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Oradell</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Palisades Park</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Paramus</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Park Ridge</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Ramsey</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Ridgefield</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Ridgewood</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">River Edge</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">River Vale</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Rochelle Park</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Rutherford</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Saddle Brook</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Saddle River</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Teaneck</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Tenafly</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Upper Saddle River</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Waldwick</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Wallington</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Washington Twp</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Westwood</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Wood-Ridge</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Woodcliff Lake</span>
+            <span class="town-chip" onclick="this.classList.toggle('selected')">Wyckoff</span>
+          </div>
+          <div class="form-hint" style="margin-top: 0.5rem;">This only applies to in-person sessions. Virtual sessions are available to families anywhere.</div>
+        </div>
+      </div>
+
+      <!-- Availability -->
+      <div class="form-group">
+        <label>Weekly Availability *</label>
+        <div class="form-hint" style="margin-bottom: 0.85rem;">Click or drag across cells to mark when you're available. Each cell is 30 minutes. These are your <strong>general</strong> windows — exact times are confirmed when you reply to a family's inquiry.</div>
+
+        <div class="av-toolbar">
+          <div class="av-legend">
+            <span class="av-legend-item"><span class="av-legend-swatch available"></span> Available</span>
+            <span class="av-legend-item"><span class="av-legend-swatch unavailable"></span> Not available</span>
+          </div>
+          <div class="av-toolbar-right">
+            <div class="av-range-toggle">
+              <button type="button" class="active" onclick="setAvailRange('default', this)">Afternoons & evenings</button>
+              <button type="button" onclick="setAvailRange('extended', this)">Show mornings (8am–10pm)</button>
+            </div>
+            <button type="button" class="av-tool-btn danger" onclick="clearAvailAll()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              Clear all
+            </button>
+          </div>
+        </div>
+
+        <div class="av-grid-hint">
+          Need to mark <strong>weekend mornings</strong>, <strong>homeschool hours</strong>, or any time before 2pm? Click <strong>Show mornings</strong> above the grid.
+        </div>
+
+        <div class="av-grid-wrap">
+          <div class="av-grid" id="availGrid"></div>
+        </div>
+
+        <div class="av-quick-actions">
+          <span class="av-quick-actions-label">Quick fill:</span>
+          <span class="av-quick-chip" onclick="quickFillAvail('weekday-evenings')">Weekday evenings (3–8pm)</span>
+          <span class="av-quick-chip" onclick="quickFillAvail('weekends')">Weekend mornings</span>
+          <span class="av-quick-chip" onclick="quickFillAvail('after-school')">After school (3–6pm)</span>
+          <span class="av-quick-chip" onclick="quickFillAvail('late-virtual')">Late virtual (8–10pm)</span>
+        </div>
+
+        <div class="av-summary-bar">
+          <div class="av-summary-stats">
+            <div>
+              <div class="av-summary-stat-num" id="totalHours">0</div>
+              <div class="av-summary-stat-label">Hours / week</div>
+            </div>
+            <div>
+              <div class="av-summary-stat-num" id="totalDays">0</div>
+              <div class="av-summary-stat-label">Days / week</div>
+            </div>
+          </div>
+          <div class="av-summary-message" id="matchingHint">Paint a few blocks to get started</div>
+        </div>
+
+        <div class="av-seasonal">
+          <div class="av-season">
+            <div class="av-season-header">
+              <span class="av-season-name">☀️ Summer</span>
+              <label class="av-toggle">
+                <input type="checkbox" checked>
+                <span class="av-toggle-slider"></span>
+              </label>
+            </div>
+            <div class="av-season-desc">Are you available to tutor during summer?</div>
+            <textarea class="av-season-note" placeholder="Optional: If your summer schedule is different, note it here."></textarea>
+          </div>
+          <div class="av-season">
+            <div class="av-season-header">
+              <span class="av-season-name">❄️ School Breaks</span>
+              <label class="av-toggle">
+                <input type="checkbox" checked>
+                <span class="av-toggle-slider"></span>
+              </label>
+            </div>
+            <div class="av-season-desc">Available during winter break, spring break, and long weekends?</div>
+            <textarea class="av-season-note" placeholder="Optional: Any notes on break availability."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-ghost" onclick="goToStep(2)">&#8592; Back</button>
+        <button class="btn btn-navy" onclick="goToStep(4)">Continue &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 4: PROFILE CONTENT ==================== -->
+  <div class="step" id="step4">
+    <div class="form-card">
+      <h2 class="form-card-title">Your Profile</h2>
+      <p class="form-card-desc">This is what families will read when they find you. Make it personal - parents want to know who you are, not just what you teach.</p>
+
+      <div class="form-group">
+        <label>Profile Photo <span class="optional">(optional but strongly recommended)</span></label>
+        <div style="border: 2px dashed var(--border); border-radius: 10px; padding: 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s;" onmouseover="this.style.borderColor='var(--navy)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📷</div>
+          <div style="font-size: 0.9rem; font-weight: 600; color: var(--navy);">Click to upload a photo</div>
+          <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.25rem;">Professional headshot recommended. JPG or PNG, max 5MB.</div>
+        </div>
+        <div class="form-hint">Profiles with photos receive significantly more inquiries from families.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Headline *</label>
+        <div class="headline-row">
+          <input type="text" id="headlineInput" maxlength="100" value="Middle School Math Specialist — 14 Years in Bergen County Classrooms">
+          <div class="headline-meta">
+            <span class="headline-counter" id="headlineCounter">63/80</span>
+            <button type="button" class="headline-regen" id="headlineRegen" title="Generate a new suggestion">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="form-hint">A short pitch that appears under your name on your profile and search results. We've drafted one based on what you've told us so far.</div>
+
+        <div class="alt-headlines">
+          <div class="alt-headlines-label">Other suggestions</div>
+          <div class="alt-list" id="altList">
+            <button type="button" class="alt-option" data-alt="0">
+              <span>NJ-Certified Math Teacher with Special Education Endorsement</span>
+              <span class="alt-option-use">Use this</span>
+            </button>
+            <button type="button" class="alt-option" data-alt="1">
+              <span>Algebra & Geometry Tutor — Ridgewood Public Schools Educator</span>
+              <span class="alt-option-use">Use this</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Bio <span class="optional">(optional)</span></label>
+        <textarea placeholder="Tell families about yourself in your own words. What's your teaching philosophy? What can parents and students expect from your sessions?
+
+You can skip this for now and add it from your dashboard later — but profiles with bios receive significantly more inquiries."></textarea>
+        <div class="form-hint">2-3 paragraphs recommended. Write like you're talking to a parent at back-to-school night. <a href="#" id="skipBio" style="font-weight: 600; text-decoration: none; border-bottom: 1px dashed var(--navy-light); margin-left: 0.25rem;">Skip for now →</a></div>
+      </div>
+
+      <div class="form-group">
+        <label>Additional Languages <span class="optional">(optional)</span></label>
+        <div class="lang-select">
+          <button type="button" class="lang-trigger" id="langTrigger">
+            <span class="lang-placeholder" id="langPlaceholder">Select languages you speak fluently</span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <div class="lang-option" data-lang="Spanish"><span>Spanish</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="Korean"><span>Korean</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="Mandarin"><span>Mandarin</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="Hindi"><span>Hindi</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="Arabic"><span>Arabic</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="French"><span>French</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="Russian"><span>Russian</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="Polish"><span>Polish</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="Hebrew"><span>Hebrew</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="Tagalog"><span>Tagalog</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="Italian"><span>Italian</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="ASL"><span>American Sign Language (ASL)</span><span class="check-mark">✓</span></div>
+            <div class="lang-option" data-lang="Other"><span>Other...</span><span class="check-mark">✓</span></div>
+            <input type="text" class="lang-other-input" id="langOtherInput" placeholder="Type other language(s), comma-separated" style="display:none;">
+          </div>
+        </div>
+        <div class="form-hint">English is assumed — list any additional languages you can communicate in fluently with families or students.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Education <span class="optional">(optional)</span></label>
+        <div class="degrees-list" id="degreesList">
+          <div class="degree-row">
+            <div class="degree-input-wrap school">
+              <input type="text" class="degree-input degree-school" placeholder="College or university (e.g., Montclair State)">
+              <div class="degree-suggestions"></div>
+            </div>
+            <select class="degree-level-select">
+              <option value="">Degree level</option>
+              <option value="Bachelor's">Bachelor's</option>
+              <option value="Master's">Master's</option>
+              <option value="Specialist (Ed.S.)">Specialist (Ed.S.)</option>
+              <option value="Doctorate">Doctorate</option>
+              <option value="Other">Other</option>
+            </select>
+            <div class="degree-input-wrap field">
+              <input type="text" class="degree-input degree-field" placeholder="Field of study (e.g., Special Ed)">
+              <div class="degree-suggestions"></div>
+            </div>
+            <button type="button" class="degree-remove" title="Remove this degree" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+        <button type="button" class="add-degree-btn" id="addDegreeBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add another degree
+        </button>
+        <div class="form-hint">Start typing your school — we'll auto-suggest. Add as many degrees as you'd like.</div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-ghost" onclick="goToStep(3)">← Back</button>
+        <button class="btn btn-navy" onclick="goToStep(5)">Review Profile →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 5: REVIEW & SUBMIT ==================== -->
+  <div class="step" id="step5">
+    <div class="form-card">
+      <h2 class="form-card-title">Review & Submit</h2>
+      <p class="form-card-desc">Take a final look before we submit your profile for verification.</p>
+
+      <div class="review-section">
+        <h3>Account <a class="review-edit" onclick="goToStep(1)">Edit</a></h3>
+        <div class="review-row">
+          <span class="review-label">Display Name</span>
+          <span class="review-value">Mrs. Mitchell</span>
+        </div>
+        <div class="review-row">
+          <span class="review-label">Email</span>
+          <span class="review-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d3e2c3f2c25632024392e252821210d28202c2421632e2220">[email&#160;protected]</a></span>
+        </div>
+      </div>
+
+      <div class="review-section">
+        <h3>Credentials <a class="review-edit" onclick="goToStep(2)">Edit</a></h3>
+        <div class="review-row">
+          <span class="review-label">Status</span>
+          <span class="review-value">Active - currently teaching</span>
+        </div>
+        <div class="review-row">
+          <span class="review-label">Experience</span>
+          <span class="review-value">8-14 years</span>
+        </div>
+        <div class="review-row">
+          <span class="review-label">Certificate</span>
+          <span class="review-value">Standard Certificate</span>
+        </div>
+        <div class="review-row">
+          <span class="review-label">Current School</span>
+          <span class="review-value">GW Middle School, Ridgewood</span>
+        </div>
+      </div>
+
+      <div class="review-section">
+        <h3>Tutoring Details <a class="review-edit" onclick="goToStep(3)">Edit</a></h3>
+        <div class="review-row">
+          <span class="review-label">Subjects</span>
+          <span class="review-tags">
+            <span class="review-tag">Algebra I</span>
+            <span class="review-tag">Algebra II</span>
+            <span class="review-tag">Geometry</span>
+            <span class="review-tag">SAT Prep</span>
+          </span>
+        </div>
+        <div class="review-row">
+          <span class="review-label">Grades</span>
+          <span class="review-value">6-8, 9-12</span>
+        </div>
+        <div class="review-row">
+          <span class="review-label">Format</span>
+          <span class="review-value">In-Person & Virtual</span>
+        </div>
+        <div class="review-row">
+          <span class="review-label">Towns</span>
+          <span class="review-tags">
+            <span class="review-tag">Ridgewood</span>
+            <span class="review-tag">Glen Rock</span>
+            <span class="review-tag">Waldwick</span>
+            <span class="review-tag">Midland Park</span>
+            <span class="review-tag">Wyckoff</span>
+          </span>
+        </div>
+        <div class="review-row">
+          <span class="review-label">Availability</span>
+          <span class="review-value">9 hrs/week across 3 days · Available in summer & school breaks</span>
+        </div>
+      </div>
+
+      <div class="review-section">
+        <h3>Profile <a class="review-edit" onclick="goToStep(4)">Edit</a></h3>
+        <div class="review-row">
+          <span class="review-label">Headline</span>
+          <span class="review-value">Middle School Math Specialist - 14 Years in Bergen County Classrooms</span>
+        </div>
+        <div class="review-row">
+          <span class="review-label">Bio</span>
+          <span class="review-value" style="font-style: italic;">3 paragraphs written ✓</span>
+        </div>
+        <div class="review-row">
+          <span class="review-label">Photo</span>
+          <span class="review-value">Uploaded ✓</span>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top: 0.5rem;">
+        <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <p>No payment is required today. When we launch paid subscriptions, plans will start at <strong>$19/month</strong>. Early sign-ups will be notified before any charges begin.</p>
+      </div>
+
+      <div class="tos-check">
+        <input type="checkbox" id="tosAgree">
+        <label for="tosAgree">I agree to the Bergen Tutors <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I confirm that the information provided is accurate and I authorize Bergen Tutors to verify my NJ teaching credentials through public records.</label>
+      </div>
+
+      <div class="form-actions" style="margin-top: 2rem;">
+        <button class="btn btn-ghost" onclick="goToStep(4)">← Back</button>
+        <button class="btn btn-gold" onclick="submitForm()" style="font-size: 1.05rem; padding: 0.9rem 2.5rem;">Submit for Verification ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SUCCESS STATE ==================== -->
+  <div class="step" id="stepSuccess">
+    <div class="form-card success-card">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h2>You're In the Queue!</h2>
+      <p>Your profile has been submitted for verification. We'll check your credentials against the NJDOE database and have you live within 48 hours.</p>
+      <div class="success-details">
+        <h4>What Happens Next</h4>
+        <div class="success-detail-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>We verify your NJ teaching credentials (24-48 hrs)</span>
+        </div>
+        <div class="success-detail-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>You'll get an email when your profile is live</span>
+        </div>
+        <div class="success-detail-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Families can start finding and contacting you</span>
+        </div>
+        <div class="success-detail-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>No payment required until subscriptions launch</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card" style="margin-top: 1.25rem; padding: 1.5rem 1.75rem;">
+      <div style="display: flex; align-items: flex-start; gap: 1rem;">
+        <div style="background: var(--gold-light); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a8873a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        </div>
+        <div style="flex: 1;">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--navy); margin-bottom: 0.3rem; font-weight: 600;">Your profile is 80% complete</h3>
+          <p style="font-size: 0.9rem; color: var(--text); line-height: 1.55; margin-bottom: 0.85rem;">Profiles with a bio receive significantly more inquiries from families. You can finish yours from your dashboard anytime — it only takes a few minutes.</p>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="#" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1rem; background: var(--navy); color: var(--white); border-radius: 6px; font-size: 0.88rem; font-weight: 600; text-decoration: none;">Add bio now →</a>
+            <a href="#" style="display: inline-flex; align-items: center; padding: 0.55rem 1rem; color: var(--text-light); font-size: 0.88rem; font-weight: 500; text-decoration: none;">I'll do it later</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Step navigation
+  function goToStep(step) {
+    document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+    document.getElementById('step' + step).classList.add('active');
+
+    // Update progress bar
+    document.querySelectorAll('.progress-step').forEach(function(ps, i) {
+      var dot = ps.querySelector('.progress-dot');
+      dot.classList.remove('active', 'completed');
+      ps.classList.remove('active', 'completed');
+      if (i + 1 < step) {
+        dot.classList.add('completed');
+        dot.textContent = String.fromCharCode(10003);
+        ps.classList.add('completed');
+      } else if (i + 1 === step) {
+        dot.classList.add('active');
+        dot.textContent = step;
+        ps.classList.add('active');
+      } else {
+        dot.textContent = i + 1;
+      }
+    });
+
+    // Update progress lines
+    for (var i = 1; i <= 4; i++) {
+      var line = document.getElementById('line' + i);
+      if (i < step) {
+        line.classList.add('completed');
+      } else {
+        line.classList.remove('completed');
+      }
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Submit
+  function submitForm() {
+    document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+    document.getElementById('stepSuccess').classList.add('active');
+
+    document.querySelectorAll('.progress-dot').forEach(function(dot) {
+      dot.classList.remove('active');
+      dot.classList.add('completed');
+      dot.textContent = String.fromCharCode(10003);
+    });
+    document.querySelectorAll('.progress-line').forEach(function(line) { line.classList.add('completed'); });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Radio card selection
+  function selectRadio(card) {
+    var cards = card.closest('.radio-cards').querySelectorAll('.radio-card');
+    cards.forEach(function(c) { c.classList.remove('selected'); });
+    card.classList.add('selected');
+  }
+
+  // Session format selection - shows/hides service area and virtual note
+  function selectFormat(format) {
+    var cards = document.querySelectorAll('[name="format"]');
+    cards.forEach(function(r) { r.closest('.radio-card').classList.remove('selected'); });
+    var selected = document.querySelector('[name="format"][value="' + format + '"]');
+    if (selected) selected.closest('.radio-card').classList.add('selected');
+
+    var serviceArea = document.getElementById('serviceAreaSection');
+    var virtualNote = document.getElementById('virtualNote');
+
+    if (format === 'inperson') {
+      serviceArea.style.display = 'block';
+      virtualNote.style.display = 'none';
+    } else if (format === 'virtual') {
+      serviceArea.style.display = 'none';
+      virtualNote.style.display = 'flex';
+    } else if (format === 'both') {
+      serviceArea.style.display = 'block';
+      virtualNote.style.display = 'flex';
+    }
+  }
+
+  // Town select all / clear all
+  function selectAllTowns() {
+    var chips = document.querySelectorAll('#townGrid .town-chip');
+    chips.forEach(function(c) { c.classList.add('selected'); });
+  }
+
+  function selectNoTowns() {
+    var chips = document.querySelectorAll('#townGrid .town-chip');
+    chips.forEach(function(c) { c.classList.remove('selected'); });
+  }
+
+  // Display name preview
+  var honorificEl = document.getElementById('honorific');
+  var displayLastEl = document.getElementById('displayLast');
+  var lastNameEl = document.getElementById('lastName');
+  var namePreviewEl = document.getElementById('namePreview');
+  var namePreviewValueEl = document.getElementById('namePreviewValue');
+
+  lastNameEl.addEventListener('input', function() {
+    if (!displayLastEl.dataset.edited) {
+      displayLastEl.value = lastNameEl.value;
+    }
+    updateNamePreview();
+  });
+
+  displayLastEl.addEventListener('input', function() {
+    displayLastEl.dataset.edited = 'true';
+    updateNamePreview();
+  });
+
+  honorificEl.addEventListener('change', updateNamePreview);
+
+  function updateNamePreview() {
+    var h = honorificEl.value;
+    var l = displayLastEl.value || lastNameEl.value;
+    if (h && l) {
+      namePreviewEl.style.display = 'flex';
+      namePreviewValueEl.textContent = h + ' ' + l;
+    } else {
+      namePreviewEl.style.display = 'none';
+    }
+  }
+
+  // ====================================================
+  // HEADLINE AUTO-FILL: counter, regenerate, alternatives
+  // ====================================================
+  (function() {
+    var input = document.getElementById('headlineInput');
+    var counter = document.getElementById('headlineCounter');
+    var regen = document.getElementById('headlineRegen');
+    var altList = document.getElementById('altList');
+    if (!input || !counter || !regen || !altList) return;
+
+    // Pool of alternative templates we'd actually generate from profile data.
+    // In production these'd be assembled from {subjects, years, schools, towns, endorsements}.
+    var ALT_POOL = [
+      "Middle School Math Specialist — 14 Years in Bergen County Classrooms",
+      "NJ-Certified Math Teacher with Special Education Endorsement",
+      "Algebra & Geometry Tutor — Ridgewood Public Schools Educator",
+      "AP Calculus & SAT Math Tutor — 14 Years Teaching in NJ",
+      "Math Tutor for Grades 5–12 with IEP Experience",
+      "Bergen County Math Specialist — Algebra, Geometry & Beyond",
+      "Veteran Middle School Math Teacher — Ridgewood, NJ",
+      "Math & Test Prep Tutor — 14 Years in Public Schools"
+    ];
+
+    function updateCounter() {
+      var len = input.value.length;
+      counter.textContent = len + '/80';
+      counter.classList.remove('warn', 'over');
+      if (len > 80) counter.classList.add('over');
+      else if (len > 70) counter.classList.add('warn');
+    }
+
+    function setHeadline(text) {
+      input.value = text;
+      updateCounter();
+    }
+
+    function pickAlternatives(excludeText) {
+      // Pick 2 alternatives that aren't currently in the input field
+      var available = ALT_POOL.filter(function(s) { return s !== excludeText; });
+      // Simple shuffle
+      for (var i = available.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = available[i]; available[i] = available[j]; available[j] = tmp;
+      }
+      return available.slice(0, 2);
+    }
+
+    function renderAlternatives() {
+      var alts = pickAlternatives(input.value);
+      altList.innerHTML = '';
+      alts.forEach(function(text, idx) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'alt-option';
+        btn.dataset.alt = idx;
+        btn.innerHTML = '<span>' + text + '</span><span class="alt-option-use">Use this</span>';
+        btn.addEventListener('click', function() {
+          setHeadline(text);
+          renderAlternatives();
+        });
+        altList.appendChild(btn);
+      });
+    }
+
+    // Wire up listeners
+    input.addEventListener('input', updateCounter);
+    regen.addEventListener('click', function() {
+      regen.classList.add('spinning');
+      setTimeout(function() { regen.classList.remove('spinning'); }, 400);
+      // Pick a new headline that isn't the current one
+      var candidates = ALT_POOL.filter(function(s) { return s !== input.value; });
+      var next = candidates[Math.floor(Math.random() * candidates.length)];
+      setHeadline(next);
+      renderAlternatives();
+    });
+
+    // Wire initial alternatives' click behavior (they were rendered server-side in HTML)
+    altList.querySelectorAll('.alt-option').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var text = btn.querySelector('span').textContent;
+        setHeadline(text);
+        renderAlternatives();
+      });
+    });
+
+    updateCounter();
+  })();
+
+  // "Skip for now" link beneath the bio field — advances to review step
+  (function() {
+    var skipLink = document.getElementById('skipBio');
+    if (!skipLink) return;
+    skipLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      goToStep(5);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+
+  // ====================================================
+  // LANGUAGE MULTI-SELECT
+  // ====================================================
+  (function() {
+    var trigger = document.getElementById('langTrigger');
+    var dropdown = document.getElementById('langDropdown');
+    var placeholder = document.getElementById('langPlaceholder');
+    var otherInput = document.getElementById('langOtherInput');
+    if (!trigger || !dropdown) return;
+
+    var selected = []; // array of selected language strings
+    var otherEnabled = false;
+
+    function renderTrigger() {
+      // Clear current contents
+      trigger.innerHTML = '';
+      if (selected.length === 0) {
+        var ph = document.createElement('span');
+        ph.className = 'lang-placeholder';
+        ph.textContent = 'Select languages you speak fluently';
+        trigger.appendChild(ph);
+        return;
+      }
+      selected.forEach(function(lang) {
+        var pill = document.createElement('span');
+        pill.className = 'lang-pill';
+        pill.innerHTML = '<span>' + lang + '</span>';
+        var x = document.createElement('button');
+        x.type = 'button';
+        x.className = 'lang-pill-x';
+        x.title = 'Remove ' + lang;
+        x.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+        x.addEventListener('click', function(e) {
+          e.stopPropagation();
+          removeLanguage(lang);
+        });
+        pill.appendChild(x);
+        trigger.appendChild(pill);
+      });
+    }
+
+    function refreshOptionStates() {
+      dropdown.querySelectorAll('.lang-option').forEach(function(opt) {
+        var lang = opt.dataset.lang;
+        var isSelected = lang === 'Other' ? otherEnabled : selected.indexOf(lang) !== -1;
+        opt.classList.toggle('selected', isSelected);
+      });
+    }
+
+    function addLanguage(lang) {
+      if (selected.indexOf(lang) === -1) {
+        selected.push(lang);
+        renderTrigger();
+        refreshOptionStates();
+      }
+    }
+    function removeLanguage(lang) {
+      selected = selected.filter(function(l) { return l !== lang; });
+      renderTrigger();
+      refreshOptionStates();
+    }
+
+    function toggleDropdown(open) {
+      var willOpen = (typeof open === 'boolean') ? open : !dropdown.classList.contains('open');
+      dropdown.classList.toggle('open', willOpen);
+      trigger.classList.toggle('open', willOpen);
+    }
+
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleDropdown();
+    });
+
+    dropdown.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    dropdown.querySelectorAll('.lang-option').forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        var lang = opt.dataset.lang;
+        if (lang === 'Other') {
+          otherEnabled = !otherEnabled;
+          otherInput.style.display = otherEnabled ? 'block' : 'none';
+          if (!otherEnabled) {
+            otherInput.value = '';
+            // Remove any languages that came from Other input
+            // (For simplicity in mockup, we don't track these separately; user can manually clean up)
+          } else {
+            setTimeout(function() { otherInput.focus(); }, 50);
+          }
+          refreshOptionStates();
+          return;
+        }
+        if (selected.indexOf(lang) === -1) {
+          addLanguage(lang);
+        } else {
+          removeLanguage(lang);
+        }
+      });
+    });
+
+    // Handle Other text input — add languages on Enter or blur
+    otherInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        commitOtherInput();
+      }
+    });
+    otherInput.addEventListener('blur', commitOtherInput);
+
+    function commitOtherInput() {
+      var raw = otherInput.value.trim();
+      if (!raw) return;
+      raw.split(',').forEach(function(part) {
+        var lang = part.trim();
+        if (lang) addLanguage(lang);
+      });
+      otherInput.value = '';
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function() {
+      toggleDropdown(false);
+    });
+  })();
+
+  // ====================================================
+  // DEGREES: school autocomplete + level dropdown + field autocomplete (multi-row)
+  // ====================================================
+  (function() {
+    var list = document.getElementById('degreesList');
+    var addBtn = document.getElementById('addDegreeBtn');
+    if (!list || !addBtn) return;
+
+    // College/university pool — NJ-area + NYC + national education-relevant + largest US schools.
+    // Hardcoded by design — see bergen-tutors-build-notes.md for reasoning.
+    // Tutors who attended a school not in this list can free-type the name.
+    var SCHOOL_POOL = [
+      // ===== NJ AREA =====
+      "Montclair State University",
+      "Rutgers University — New Brunswick",
+      "Rutgers University — Newark",
+      "Rutgers University — Camden",
+      "The College of New Jersey (TCNJ)",
+      "William Paterson University",
+      "New Jersey City University (NJCU)",
+      "Ramapo College of New Jersey",
+      "Stockton University",
+      "Rowan University",
+      "Kean University",
+      "Fairleigh Dickinson University (FDU)",
+      "Seton Hall University",
+      "Saint Peter's University",
+      "Princeton University",
+      "Stevens Institute of Technology",
+      "Drew University",
+      "Caldwell University",
+      "Felician University",
+      "Bergen Community College",
+      "Berkeley College",
+      "New Jersey Institute of Technology (NJIT)",
+      "Centenary University",
+      "Georgian Court University",
+      "Monmouth University",
+      "Rider University",
+      "Saint Elizabeth University",
+
+      // ===== NYC METRO =====
+      "Columbia University",
+      "Teachers College, Columbia University",
+      "New York University (NYU)",
+      "Bank Street College of Education",
+      "City College of New York (CCNY)",
+      "Hunter College, CUNY",
+      "Brooklyn College, CUNY",
+      "Queens College, CUNY",
+      "Lehman College, CUNY",
+      "Baruch College, CUNY",
+      "John Jay College, CUNY",
+      "Pace University",
+      "Fordham University",
+      "St. John's University",
+      "The New School",
+      "Adelphi University",
+      "Hofstra University",
+      "Long Island University (LIU)",
+      "Stony Brook University",
+      "SUNY New Paltz",
+      "SUNY Albany",
+      "SUNY Binghamton",
+      "SUNY Buffalo",
+      "SUNY Geneseo",
+      "SUNY Oswego",
+      "SUNY Cortland",
+      "Manhattan College",
+      "Iona University",
+
+      // ===== IVY + NORTHEAST PRIVATE =====
+      "Harvard University",
+      "Harvard Graduate School of Education",
+      "Yale University",
+      "Brown University",
+      "Dartmouth College",
+      "Cornell University",
+      "University of Pennsylvania",
+      "Massachusetts Institute of Technology (MIT)",
+      "Boston University",
+      "Boston College",
+      "Northeastern University",
+      "Tufts University",
+      "Wellesley College",
+      "Smith College",
+      "Mount Holyoke College",
+      "Amherst College",
+      "Williams College",
+      "Bowdoin College",
+      "Bates College",
+      "Colby College",
+      "Middlebury College",
+      "Vassar College",
+      "Bryn Mawr College",
+      "Haverford College",
+      "Swarthmore College",
+      "Lafayette College",
+      "Lehigh University",
+      "Bucknell University",
+      "Gettysburg College",
+      "Dickinson College",
+      "Colgate University",
+      "Hamilton College",
+      "Union College",
+      "Skidmore College",
+      "Sarah Lawrence College",
+      "Wesleyan University",
+      "Trinity College",
+      "Connecticut College",
+      "Holy Cross",
+      "Providence College",
+      "Brandeis University",
+      "Clark University",
+      "Worcester Polytechnic Institute (WPI)",
+
+      // ===== TOP NATIONAL =====
+      "Stanford University",
+      "Stanford Graduate School of Education",
+      "University of Chicago",
+      "Northwestern University",
+      "Duke University",
+      "Johns Hopkins University",
+      "Vanderbilt University (Peabody)",
+      "Washington University in St. Louis",
+      "Rice University",
+      "Emory University",
+      "University of Notre Dame",
+      "Carnegie Mellon University",
+      "California Institute of Technology (Caltech)",
+      "University of Southern California (USC)",
+      "Georgetown University",
+      "George Washington University",
+      "American University",
+      "Tulane University",
+      "Wake Forest University",
+      "Case Western Reserve University",
+
+      // ===== STATE FLAGSHIPS (BY REGION) =====
+      // Northeast
+      "Penn State University",
+      "Temple University",
+      "Drexel University",
+      "Villanova University",
+      "University of Delaware",
+      "University of Maryland, College Park",
+      "University of Connecticut (UConn)",
+      "University of Massachusetts Amherst",
+      "University of New Hampshire",
+      "University of Vermont",
+      "University of Rhode Island",
+      "University of Maine",
+      // Mid-Atlantic / South
+      "University of Virginia",
+      "Virginia Tech",
+      "James Madison University",
+      "George Mason University",
+      "University of North Carolina at Chapel Hill",
+      "North Carolina State University",
+      "East Carolina University",
+      "University of South Carolina",
+      "Clemson University",
+      "University of Georgia",
+      "Georgia Tech",
+      "Georgia State University",
+      "University of Florida",
+      "Florida State University",
+      "University of Central Florida (UCF)",
+      "University of Miami",
+      "Florida International University",
+      "University of Tennessee, Knoxville",
+      "University of Kentucky",
+      "University of Alabama",
+      "Auburn University",
+      "Louisiana State University (LSU)",
+      "University of Mississippi",
+      "Mississippi State University",
+      // Midwest
+      "University of Michigan",
+      "Michigan State University",
+      "Ohio State University",
+      "University of Cincinnati",
+      "Miami University (Ohio)",
+      "Indiana University Bloomington",
+      "Purdue University",
+      "University of Illinois Urbana-Champaign",
+      "University of Illinois Chicago",
+      "Northern Illinois University",
+      "DePaul University",
+      "Loyola University Chicago",
+      "Marquette University",
+      "University of Wisconsin–Madison",
+      "University of Minnesota",
+      "University of Iowa",
+      "Iowa State University",
+      "University of Missouri",
+      "University of Kansas",
+      "Kansas State University",
+      "University of Nebraska–Lincoln",
+      // Southwest / Texas
+      "University of Texas at Austin",
+      "Texas A&M University",
+      "University of Texas at Dallas",
+      "University of Houston",
+      "Baylor University",
+      "Southern Methodist University (SMU)",
+      "Texas Tech University",
+      "University of North Texas",
+      "University of Oklahoma",
+      "Oklahoma State University",
+      "Arizona State University",
+      "University of Arizona",
+      "University of New Mexico",
+      // West Coast
+      "University of California, Berkeley",
+      "University of California, Los Angeles (UCLA)",
+      "University of California, San Diego",
+      "University of California, Santa Barbara",
+      "University of California, Irvine",
+      "University of California, Davis",
+      "University of California, Riverside",
+      "University of California, Santa Cruz",
+      "California State University, Long Beach",
+      "California State University, Fullerton",
+      "San Diego State University",
+      "San Francisco State University",
+      "San Jose State University",
+      "California Polytechnic State University (Cal Poly)",
+      "Pepperdine University",
+      "Loyola Marymount University",
+      "Santa Clara University",
+      "University of San Francisco",
+      "University of Oregon",
+      "Oregon State University",
+      "University of Washington",
+      "Washington State University",
+      "University of Utah",
+      "Brigham Young University (BYU)",
+      "University of Colorado Boulder",
+      "Colorado State University",
+      "University of Denver",
+      "University of Nevada, Las Vegas (UNLV)",
+      "University of Nevada, Reno",
+      "University of Hawaii at Manoa",
+
+      // ===== HBCUs =====
+      "Howard University",
+      "Spelman College",
+      "Morehouse College",
+      "Hampton University",
+      "Florida A&M University (FAMU)",
+      "North Carolina A&T",
+      "Tuskegee University",
+      "Xavier University of Louisiana",
+      "Morgan State University",
+
+      // ===== OTHER NOTABLE =====
+      "Syracuse University",
+      "University of Pittsburgh",
+      "University of Rochester",
+      "Rensselaer Polytechnic Institute (RPI)"
+    ];
+
+    // Field of study pool — common across education-relevant degrees.
+    var FIELD_POOL = [
+      "Special Education",
+      "Elementary Education",
+      "Secondary Education",
+      "Early Childhood Education",
+      "Educational Leadership",
+      "Curriculum & Instruction",
+      "Reading & Literacy",
+      "ESL / Bilingual Education",
+      "School Counseling",
+      "School Psychology",
+      "Educational Technology",
+      "Educational Psychology",
+      "Mathematics",
+      "Mathematics Education",
+      "English",
+      "English Education",
+      "English Literature",
+      "History",
+      "Social Studies",
+      "Political Science",
+      "Economics",
+      "Sociology",
+      "Psychology",
+      "Philosophy",
+      "Linguistics",
+      "Spanish",
+      "French",
+      "Italian",
+      "Latin",
+      "World Languages",
+      "Biology",
+      "Chemistry",
+      "Physics",
+      "Earth Science",
+      "Environmental Science",
+      "Computer Science",
+      "Engineering",
+      "Music",
+      "Music Education",
+      "Studio Art",
+      "Art Education",
+      "Theater",
+      "Physical Education",
+      "Health Education",
+      "Library Science",
+      "Social Work",
+      "Nursing",
+      "Business Education",
+      "Speech-Language Pathology",
+      "Communication Disorders"
+    ];
+
+    function fuzzyMatch(input, candidate) {
+      var tokens = input.toLowerCase().trim().split(/\s+/).filter(Boolean);
+      if (tokens.length === 0) return false;
+      var lc = candidate.toLowerCase();
+      return tokens.every(function(t) { return lc.indexOf(t) !== -1; });
+    }
+
+    function highlightMatch(input, candidate) {
+      var tokens = input.toLowerCase().trim().split(/\s+/).filter(Boolean);
+      if (tokens.length === 0) return candidate;
+      var result = candidate;
+      tokens.forEach(function(t) {
+        var re = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+        result = result.replace(re, '<span class="match-bold">$1</span>');
+      });
+      return result;
+    }
+
+    function getMatches(input, pool) {
+      if (!input || input.length < 1) return [];
+      return pool.filter(function(d) { return fuzzyMatch(input, d); }).slice(0, 8);
+    }
+
+    function wireAutocomplete(input, pool) {
+      var box = input.parentNode.querySelector('.degree-suggestions');
+      var activeIdx = -1;
+
+      function render() {
+        var matches = getMatches(input.value, pool);
+        box.innerHTML = '';
+        if (matches.length === 0) {
+          box.classList.remove('open');
+          return;
+        }
+        matches.forEach(function(m, i) {
+          var item = document.createElement('div');
+          item.className = 'degree-suggest-item';
+          if (i === activeIdx) item.classList.add('active');
+          item.innerHTML = highlightMatch(input.value, m);
+          item.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            input.value = m;
+            box.classList.remove('open');
+          });
+          item.addEventListener('mouseenter', function() {
+            activeIdx = i;
+            box.querySelectorAll('.degree-suggest-item').forEach(function(el, idx) {
+              el.classList.toggle('active', idx === activeIdx);
+            });
+          });
+          box.appendChild(item);
+        });
+        box.classList.add('open');
+      }
+
+      input.addEventListener('input', function() { activeIdx = -1; render(); });
+      input.addEventListener('focus', render);
+      input.addEventListener('blur', function() {
+        setTimeout(function() { box.classList.remove('open'); }, 100);
+      });
+      input.addEventListener('keydown', function(e) {
+        var matches = getMatches(input.value, pool);
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          activeIdx = Math.min(activeIdx + 1, matches.length - 1);
+          render();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          activeIdx = Math.max(activeIdx - 1, 0);
+          render();
+        } else if (e.key === 'Enter') {
+          if (activeIdx >= 0 && matches[activeIdx]) {
+            e.preventDefault();
+            input.value = matches[activeIdx];
+            box.classList.remove('open');
+          }
+        } else if (e.key === 'Escape') {
+          box.classList.remove('open');
+        }
+      });
+    }
+
+    function wireRow(row) {
+      var schoolInput = row.querySelector('.degree-school');
+      var fieldInput = row.querySelector('.degree-field');
+      var removeBtn = row.querySelector('.degree-remove');
+
+      if (schoolInput) wireAutocomplete(schoolInput, SCHOOL_POOL);
+      if (fieldInput) wireAutocomplete(fieldInput, FIELD_POOL);
+
+      if (removeBtn) {
+        removeBtn.addEventListener('click', function() {
+          row.remove();
+          updateRemoveButtonsVisibility();
+        });
+      }
+    }
+
+    function updateRemoveButtonsVisibility() {
+      var rows = list.querySelectorAll('.degree-row');
+      rows.forEach(function(row) {
+        var btn = row.querySelector('.degree-remove');
+        if (!btn) return;
+        btn.style.display = rows.length > 1 ? 'flex' : 'none';
+      });
+    }
+
+    function addRow() {
+      var row = document.createElement('div');
+      row.className = 'degree-row';
+      row.innerHTML =
+        '<div class="degree-input-wrap school">' +
+          '<input type="text" class="degree-input degree-school" placeholder="College or university (e.g., Montclair State)">' +
+          '<div class="degree-suggestions"></div>' +
+        '</div>' +
+        '<select class="degree-level-select">' +
+          '<option value="">Degree level</option>' +
+          '<option value="Bachelor\'s">Bachelor\'s</option>' +
+          '<option value="Master\'s">Master\'s</option>' +
+          '<option value="Specialist (Ed.S.)">Specialist (Ed.S.)</option>' +
+          '<option value="Doctorate">Doctorate</option>' +
+          '<option value="Other">Other</option>' +
+        '</select>' +
+        '<div class="degree-input-wrap field">' +
+          '<input type="text" class="degree-input degree-field" placeholder="Field of study (e.g., Special Ed)">' +
+          '<div class="degree-suggestions"></div>' +
+        '</div>' +
+        '<button type="button" class="degree-remove" title="Remove this degree">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+        '</button>';
+      list.appendChild(row);
+      wireRow(row);
+      updateRemoveButtonsVisibility();
+      var first = row.querySelector('.degree-school');
+      if (first) first.focus();
+    }
+
+    list.querySelectorAll('.degree-row').forEach(wireRow);
+    addBtn.addEventListener('click', addRow);
+  })();
+
+  // ====================================================
+  // AVAILABILITY EDITOR — weekly grid for Step 3
+  // ====================================================
+  (function() {
+    var grid = document.getElementById('availGrid');
+    if (!grid) return;
+
+    var DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var DAYS_FULL = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    var ranges = {
+      'default': { start: 14, end: 22 },   // 2pm - 10pm
+      'extended': { start: 8, end: 22 }    // 8am - 10pm
+    };
+    var currentRange = 'default';
+
+    var availability = {};
+    for (var d = 0; d < 7; d++) availability[d] = {};
+
+    var isDragging = false;
+    var dragMode = null;
+
+    function formatTime(halfHour) {
+      var hour = Math.floor(halfHour / 2);
+      var min = (halfHour % 2) * 30;
+      var period = hour >= 12 ? 'pm' : 'am';
+      var displayHour = hour % 12;
+      if (displayHour === 0) displayHour = 12;
+      return displayHour + (min === 30 ? ':30' : '') + period;
+    }
+
+    function renderGrid() {
+      grid.innerHTML = '';
+
+      var range = ranges[currentRange];
+      var startSlot = range.start * 2;
+      var endSlot = range.end * 2;
+
+      var corner = document.createElement('div');
+      corner.className = 'av-grid-header corner';
+      corner.textContent = 'TIME';
+      grid.appendChild(corner);
+
+      for (var d = 0; d < 7; d++) {
+        var h = document.createElement('div');
+        h.className = 'av-grid-header';
+        if (d === 0 || d === 6) h.className += ' weekend';
+        h.innerHTML = DAYS[d] + '<span class="day-full">' + DAYS_FULL[d] + '</span>';
+        grid.appendChild(h);
+      }
+
+      for (var slot = startSlot; slot < endSlot; slot++) {
+        var isHourStart = slot % 2 === 0;
+
+        var timeLabel = document.createElement('div');
+        timeLabel.className = 'av-time-label' + (isHourStart ? '' : ' half');
+        if (isHourStart) {
+          timeLabel.textContent = formatTime(slot);
+        } else {
+          timeLabel.textContent = '·';
+        }
+        grid.appendChild(timeLabel);
+
+        for (var d = 0; d < 7; d++) {
+          var cell = document.createElement('div');
+          cell.className = 'av-cell';
+          if (isHourStart) cell.className += ' hour-start';
+          if (availability[d][slot]) cell.className += ' available';
+          cell.dataset.day = d;
+          cell.dataset.slot = slot;
+          attachCellHandlers(cell);
+          grid.appendChild(cell);
+        }
+      }
+
+      updateSummary();
+    }
+
+    function attachCellHandlers(cell) {
+      cell.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        isDragging = true;
+        var day = parseInt(cell.dataset.day, 10);
+        var slot = parseInt(cell.dataset.slot, 10);
+        var wasAvailable = !!availability[day][slot];
+        dragMode = wasAvailable ? 'off' : 'on';
+        toggleCell(day, slot, dragMode === 'on');
+      });
+
+      cell.addEventListener('mouseenter', function(e) {
+        var day = parseInt(cell.dataset.day, 10);
+        var slot = parseInt(cell.dataset.slot, 10);
+        showTooltip(e, day, slot);
+        if (isDragging) {
+          toggleCell(day, slot, dragMode === 'on');
+        }
+      });
+
+      cell.addEventListener('mousemove', function(e) {
+        var day = parseInt(cell.dataset.day, 10);
+        var slot = parseInt(cell.dataset.slot, 10);
+        showTooltip(e, day, slot);
+      });
+
+      cell.addEventListener('mouseleave', hideTooltip);
+
+      cell.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        isDragging = true;
+        var day = parseInt(cell.dataset.day, 10);
+        var slot = parseInt(cell.dataset.slot, 10);
+        var wasAvailable = !!availability[day][slot];
+        dragMode = wasAvailable ? 'off' : 'on';
+        toggleCell(day, slot, dragMode === 'on');
+      });
+    }
+
+    document.addEventListener('mouseup', function() { isDragging = false; dragMode = null; });
+    document.addEventListener('touchend', function() { isDragging = false; dragMode = null; });
+
+    document.addEventListener('touchmove', function(e) {
+      if (!isDragging) return;
+      var touch = e.touches[0];
+      var el = document.elementFromPoint(touch.clientX, touch.clientY);
+      if (el && el.classList.contains('av-cell')) {
+        var day = parseInt(el.dataset.day, 10);
+        var slot = parseInt(el.dataset.slot, 10);
+        toggleCell(day, slot, dragMode === 'on');
+      }
+    });
+
+    function toggleCell(day, slot, makeAvailable) {
+      availability[day][slot] = makeAvailable;
+      var cell = grid.querySelector('.av-cell[data-day="' + day + '"][data-slot="' + slot + '"]');
+      if (cell) {
+        if (makeAvailable) cell.classList.add('available');
+        else cell.classList.remove('available');
+      }
+      updateSummary();
+    }
+
+    function updateSummary() {
+      var totalSlots = 0;
+      var daysWithSlots = 0;
+      for (var d = 0; d < 7; d++) {
+        var dayHasSlot = false;
+        for (var key in availability[d]) {
+          if (availability[d][key]) {
+            totalSlots++;
+            dayHasSlot = true;
+          }
+        }
+        if (dayHasSlot) daysWithSlots++;
+      }
+      var hours = totalSlots / 2;
+      var hoursEl = document.getElementById('totalHours');
+      var daysEl = document.getElementById('totalDays');
+      if (hoursEl) hoursEl.textContent = hours.toFixed(hours % 1 === 0 ? 0 : 1);
+      if (daysEl) daysEl.textContent = daysWithSlots;
+
+      var hint = document.getElementById('matchingHint');
+      if (!hint) return;
+      if (hours === 0) {
+        hint.textContent = 'Paint a few blocks to get started';
+      } else if (hours < 4) {
+        hint.textContent = 'Tutors with more availability receive more inquiries. Aim for 6+ hours/week.';
+      } else if (hours < 8) {
+        hint.textContent = 'Good start — your schedule will match most families.';
+      } else {
+        hint.textContent = 'Excellent — wide availability helps you match more families.';
+      }
+    }
+
+    var tooltipEl;
+    function ensureTooltip() {
+      if (tooltipEl) return tooltipEl;
+      tooltipEl = document.createElement('div');
+      tooltipEl.className = 'av-tooltip';
+      document.body.appendChild(tooltipEl);
+      return tooltipEl;
+    }
+    function showTooltip(e, day, slot) {
+      var t = ensureTooltip();
+      t.textContent = DAYS_FULL[day] + ' · ' + formatTime(slot) + '–' + formatTime(slot + 1);
+      t.style.left = (e.clientX + 12) + 'px';
+      t.style.top = (e.clientY + 12) + 'px';
+      t.classList.add('visible');
+    }
+    function hideTooltip() {
+      if (tooltipEl) tooltipEl.classList.remove('visible');
+    }
+
+    // Expose handlers for inline onclick attributes
+    window.setAvailRange = function(name, btn) {
+      currentRange = name;
+      document.querySelectorAll('.av-range-toggle button').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      renderGrid();
+    };
+
+    window.clearAvailAll = function() {
+      if (!confirm('Clear all your availability? You can always re-paint it.')) return;
+      for (var d = 0; d < 7; d++) availability[d] = {};
+      renderGrid();
+    };
+
+    window.quickFillAvail = function(preset) {
+      if (preset === 'weekday-evenings') {
+        for (var d = 1; d <= 5; d++) {
+          for (var s = 30; s < 40; s++) availability[d][s] = true;
+        }
+      } else if (preset === 'weekends') {
+        currentRange = 'extended';
+        document.querySelectorAll('.av-range-toggle button').forEach(function(b, i) {
+          b.classList.toggle('active', i === 1);
+        });
+        [0, 6].forEach(function(d) {
+          for (var s = 18; s < 24; s++) availability[d][s] = true;
+        });
+      } else if (preset === 'after-school') {
+        for (var d = 1; d <= 5; d++) {
+          for (var s = 30; s < 36; s++) availability[d][s] = true;
+        }
+      } else if (preset === 'late-virtual') {
+        for (var d = 1; d <= 5; d++) {
+          for (var s = 40; s < 44; s++) availability[d][s] = true;
+        }
+      }
+      renderGrid();
+    };
+
+    renderGrid();
+  })();
+
+  // For mockup preview: jump straight to Step 3 to see the new availability grid
+  // Remove this line in production; default would be Step 1
+  goToStep(3);
+</script>
+
+</body>
+</html>

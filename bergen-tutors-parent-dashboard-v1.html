@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bergen Tutors — My Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-mid: #243456;
+    --navy-light: #2a3d62;
+    --navy-pale: #f0f2f7;
+    --gold: #c8a455;
+    --gold-dark: #a8873a;
+    --gold-light: #f5edda;
+    --cream: #faf8f4;
+    --white: #ffffff;
+    --text: #2c2c2c;
+    --text-light: #6b7280;
+    --green: #2d8a5e;
+    --green-light: #e8f5ee;
+    --amber: #b45309;
+    --amber-light: #fef3c7;
+    --border: #e5e2dc;
+    --shadow: 0 2px 16px rgba(26,39,68,0.08);
+    --shadow-md: 0 4px 20px rgba(26,39,68,0.11);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Source Sans 3', sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    background: var(--navy); padding: 0 2rem; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--gold);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
+  .nav-logo-seal { width: 46px; height: 46px; flex-shrink: 0; }
+  .nav-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .nav-title { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.35rem; font-weight: 700; letter-spacing: 0.03em; }
+  .nav-subtitle { font-size: 0.62rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.25em; font-weight: 600; }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-user { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.85); font-size: 0.88rem; }
+  .nav-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--gold); color: var(--navy); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0; }
+  .nav-signout { color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none; }
+  .nav-signout:hover { color: rgba(255,255,255,0.8); }
+
+  /* WELCOME BANNER */
+  .welcome-banner { background: var(--navy); padding: 1.75rem 2rem 2rem; border-bottom: 1px solid rgba(200,164,85,0.2); }
+  .welcome-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .welcome-text h1 { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.55rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .welcome-text h1 span { color: var(--gold); }
+  .welcome-text p { color: rgba(255,255,255,0.65); font-size: 0.88rem; }
+  .btn-new-request {
+    background: var(--gold); color: var(--navy); border: none; border-radius: 8px;
+    padding: 0.65rem 1.35rem; font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.9rem; font-weight: 700; cursor: pointer; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .btn-new-request:hover { background: var(--gold-dark); color: var(--white); }
+
+  /* LAYOUT */
+  .dashboard-layout { max-width: 960px; margin: 0 auto; padding: 2rem 2rem 5rem; display: grid; grid-template-columns: 1fr 280px; gap: 2rem; align-items: start; }
+
+  /* SECTION HEADERS */
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); font-weight: 700; }
+  .section-link { font-size: 0.82rem; color: var(--navy); text-decoration: none; font-weight: 600; border-bottom: 1px solid var(--gold); }
+
+  /* BUTTONS */
+  .btn { font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: 7px; cursor: pointer; border: none; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-navy:hover { background: var(--navy-light); }
+  .btn-ghost { background: transparent; color: var(--text-light); border: 1.5px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--navy); color: var(--navy); }
+  .btn-sm { padding: 0.35rem 0.8rem; font-size: 0.78rem; }
+
+  /* ACTIVE REQUEST CARD */
+  .active-request-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--navy);
+    border-radius: 12px;
+    padding: 1.35rem 1.4rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+  }
+  .active-request-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+  .active-request-subject { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); }
+  .active-request-meta { display: flex; flex-wrap: wrap; gap: 0.6rem; font-size: 0.82rem; color: var(--text-light); margin-bottom: 0.9rem; }
+  .meta-item { display: flex; align-items: center; gap: 0.3rem; }
+  .request-status-badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    background: var(--green-light); color: var(--green);
+    border: 1px solid rgba(45,138,94,0.25); border-radius: 5px;
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; padding: 0.2rem 0.5rem; white-space: nowrap;
+  }
+  .request-actions-row { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+
+  /* TUTOR RESPONSE CARDS */
+  .response-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.35rem;
+    margin-bottom: 0.85rem;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s;
+  }
+  .response-card:hover { box-shadow: var(--shadow-md); }
+  .response-card.unread { border-left: 3px solid var(--gold); }
+
+  .response-top { display: flex; align-items: flex-start; gap: 0.85rem; margin-bottom: 0.65rem; }
+  .response-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--navy-pale); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--navy); flex-shrink: 0; border: 2px solid var(--border); }
+  .response-tutor-info { flex: 1; }
+  .response-name-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.15rem; }
+  .response-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--navy); }
+  .badge { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.65rem; font-weight: 700; border-radius: 4px; padding: 0.15rem 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+  .badge-district { background: var(--navy); color: var(--gold); }
+  .badge-verified { background: var(--green-light); color: var(--green); border: 1px solid rgba(45,138,94,0.2); }
+  .badge-new { background: var(--gold); color: var(--navy); }
+  .response-school { font-size: 0.8rem; color: var(--text-light); }
+
+  .response-message {
+    background: var(--navy-pale); border-radius: 7px; padding: 0.7rem 0.9rem;
+    font-size: 0.85rem; color: var(--text); margin-bottom: 0.8rem;
+    border-left: 2px solid var(--gold); font-style: italic;
+  }
+  .response-proposed {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--green-light); border-radius: 7px; padding: 0.55rem 0.85rem;
+    font-size: 0.82rem; color: var(--green); font-weight: 600; margin-bottom: 0.8rem;
+    border: 1px solid rgba(45,138,94,0.2);
+  }
+  .response-actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+  .response-time { margin-left: auto; font-size: 0.75rem; color: var(--text-light); }
+
+  /* SIDEBAR */
+  .sidebar-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 1.25rem; }
+  .sidebar-card-header { background: var(--navy); padding: 0.85rem 1.1rem; }
+  .sidebar-card-header span { font-family: 'Playfair Display', serif; color: var(--white); font-size: 0.95rem; font-weight: 600; }
+  .sidebar-card-body { padding: 1.1rem; }
+
+  /* Saved tutor mini-cards */
+  .saved-tutor {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.65rem 0; border-bottom: 1px solid var(--border);
+    text-decoration: none; color: inherit; transition: background 0.15s;
+  }
+  .saved-tutor:last-child { border-bottom: none; }
+  .saved-tutor:hover { color: var(--navy); }
+  .saved-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--navy-pale); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 700; color: var(--navy); flex-shrink: 0; }
+  .saved-info { flex: 1; }
+  .saved-name { font-size: 0.88rem; font-weight: 700; color: var(--navy); line-height: 1.2; }
+  .saved-detail { font-size: 0.75rem; color: var(--text-light); }
+  .saved-contact { font-size: 0.75rem; font-weight: 600; color: var(--navy); border-bottom: 1px solid var(--gold); }
+
+  /* My info card */
+  .info-row { display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { color: var(--text-light); font-size: 0.78rem; }
+  .info-value { font-weight: 600; color: var(--navy); }
+  .info-edit { font-size: 0.75rem; color: var(--navy); text-decoration: underline; cursor: pointer; }
+
+  /* Alert */
+  .alert-banner { border-radius: 8px; padding: 0.75rem 0.9rem; font-size: 0.82rem; display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 1rem; }
+  .alert-banner.gold { background: var(--gold-light); color: var(--amber); border: 1px solid rgba(200,164,85,0.35); }
+  .alert-banner svg { flex-shrink: 0; margin-top: 1px; }
+
+  /* Empty state */
+  .empty-state { background: var(--white); border: 1px dashed var(--border); border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; color: var(--text-light); }
+  .empty-state h4 { font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 0.4rem; font-size: 1rem; }
+  .empty-state p { font-size: 0.85rem; margin-bottom: 1rem; }
+
+  /* Notification dot */
+  .notif-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: inline-block; margin-left: 0.3rem; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="bergen-tutors-homepage.html" class="nav-brand">
+    <svg class="nav-logo-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="none" stroke="#C8A455" stroke-width="2.5"/>
+      <circle cx="50" cy="50" r="42" fill="none" stroke="#C8A455" stroke-width="1"/>
+      <path d="M50 22 L53 32 L64 32 L55 38 L58 49 L50 43 L42 49 L45 38 L36 32 L47 32 Z" fill="#C8A455"/>
+      <rect x="32" y="53" width="36" height="22" rx="2" fill="none" stroke="#C8A455" stroke-width="1.8"/>
+      <path d="M50 53 L50 75" stroke="#C8A455" stroke-width="1.2"/>
+      <path d="M32 62 Q41 57 50 62 Q59 57 68 62" stroke="#C8A455" stroke-width="1.2" fill="none"/>
+      <text x="50" y="91" text-anchor="middle" fill="#C8A455" font-size="6.5" letter-spacing="1.5" font-weight="600">DOCENDO DISCIMUS</text>
+    </svg>
+    <div class="nav-text">
+      <span class="nav-title">Bergen Tutors</span>
+      <span class="nav-subtitle">Verified NJ Educators</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-user">
+      <div class="nav-avatar">JK</div>
+      Jennifer K.
+    </div>
+    <a href="#" class="nav-signout">Sign out</a>
+  </div>
+</nav>
+
+<!-- WELCOME BANNER -->
+<div class="welcome-banner">
+  <div class="welcome-inner">
+    <div class="welcome-text">
+      <h1>Hi, <span>Jennifer</span> 👋</h1>
+      <p>2 tutors have responded to your SAT Math request.</p>
+    </div>
+    <button class="btn-new-request" onclick="window.location='bergen-tutors-parent-signup-v1.html'">
+      + Post a New Request
+    </button>
+  </div>
+</div>
+
+<!-- DASHBOARD LAYOUT -->
+<div class="dashboard-layout">
+
+  <!-- MAIN COLUMN -->
+  <div>
+
+    <!-- ACTIVE REQUEST -->
+    <div class="section-header">
+      <span class="section-title">My Active Request</span>
+    </div>
+
+    <div class="active-request-card">
+      <div class="active-request-top">
+        <div>
+          <div class="active-request-subject">SAT Math</div>
+          <div style="font-size:0.8rem;color:var(--text-light);margin-top:0.15rem;">Cresskill · 11th grade · Posted 2 days ago</div>
+        </div>
+        <span class="request-status-badge">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+          Active · 2 responses
+        </span>
+      </div>
+      <div class="active-request-meta">
+        <span class="meta-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Weekday evenings, Saturday
+        </span>
+        <span class="meta-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          No format preference
+        </span>
+        <span class="meta-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          11th grade
+        </span>
+      </div>
+      <div class="request-actions-row">
+        <a href="bergen-tutors-search-results-v1.html" class="btn btn-navy btn-sm">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          Browse all matching tutors
+        </a>
+        <button class="btn btn-ghost btn-sm">Edit request</button>
+        <button class="btn btn-ghost btn-sm" style="color:#c0392b;border-color:#f5c6c2;" onclick="if(confirm('Close this request?')) this.closest('.active-request-card').style.opacity='0.5'">Close request</button>
+      </div>
+    </div>
+
+    <!-- TUTOR RESPONSES -->
+    <div class="section-header">
+      <span class="section-title">
+        Tutor Responses
+        <span class="notif-dot"></span>
+      </span>
+      <span style="font-size:0.82rem;color:var(--text-light);">2 tutors replied</span>
+    </div>
+
+    <!-- Response 1 — in-district, unread -->
+    <div class="response-card unread">
+      <div class="response-top">
+        <div class="response-avatar">SM</div>
+        <div class="response-tutor-info">
+          <div class="response-name-row">
+            <span class="response-name">Mrs. Sarah Mitchell</span>
+            <span class="badge badge-district">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Cresskill District
+            </span>
+            <span class="badge badge-verified">NJ Certified</span>
+            <span class="badge badge-new">New</span>
+          </div>
+          <div class="response-school">Cresskill Middle School · Math Department</div>
+        </div>
+      </div>
+
+      <div class="response-message">
+        "Hi Jennifer — I teach math at Cresskill Middle and tutor SAT Math students regularly. I'd love to help your daughter with word problems and pacing. I have Tuesday and Thursday evenings open, and Saturday mornings work well too. Happy to do a free 20-minute intro call first."
+      </div>
+
+      <div class="response-proposed">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Proposed: Tuesdays 6–7 PM or Saturdays 9–10 AM · In-person or virtual
+      </div>
+
+      <div class="response-actions">
+        <button class="btn btn-navy btn-sm">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Reply
+        </button>
+        <a href="bergen-tutors-profile-v2.html" class="btn btn-ghost btn-sm">View profile</a>
+        <button class="btn btn-ghost btn-sm">Decline</button>
+        <span class="response-time">3 hours ago</span>
+      </div>
+    </div>
+
+    <!-- Response 2 — unread -->
+    <div class="response-card unread">
+      <div class="response-top">
+        <div class="response-avatar">DP</div>
+        <div class="response-tutor-info">
+          <div class="response-name-row">
+            <span class="response-name">Mr. Daniel Park</span>
+            <span class="badge badge-verified">NJ Certified</span>
+            <span class="badge badge-new">New</span>
+          </div>
+          <div class="response-school">Ridgewood High School · Math Department</div>
+        </div>
+      </div>
+
+      <div class="response-message">
+        "Hello — I specialize in SAT Math prep and have helped many Bergen County juniors improve their scores significantly. Thursday evenings and Sunday mornings work well for me. I'm flexible on format — happy to meet in person in Cresskill or do sessions virtually."
+      </div>
+
+      <div class="response-proposed">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Proposed: Thursdays 7–8 PM or Sundays 10–11 AM · In-person or virtual
+      </div>
+
+      <div class="response-actions">
+        <button class="btn btn-navy btn-sm">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Reply
+        </button>
+        <a href="bergen-tutors-profile-v2.html" class="btn btn-ghost btn-sm">View profile</a>
+        <button class="btn btn-ghost btn-sm">Decline</button>
+        <span class="response-time">Yesterday</span>
+      </div>
+    </div>
+
+    <!-- Tutors who haven't responded yet -->
+    <div style="margin-top:1.75rem;">
+      <div class="section-header">
+        <span class="section-title" style="font-size:0.95rem;color:var(--text-light);">Also notified — no reply yet</span>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:0.85rem 1.1rem;box-shadow:var(--shadow);display:flex;flex-wrap:wrap;gap:0.6rem;align-items:center;">
+        <span style="font-size:0.82rem;color:var(--text-light);">Ms. Jennifer Lee</span>
+        <span style="color:var(--border);">·</span>
+        <span style="font-size:0.82rem;color:var(--text-light);">Mr. Anthony Russo</span>
+        <span style="color:var(--border);">·</span>
+        <span style="font-size:0.82rem;color:var(--text-light);">Ms. Karen Cho</span>
+        <span style="margin-left:auto;font-size:0.75rem;color:var(--text-light);font-style:italic;">Typically respond within 24–48 hrs</span>
+      </div>
+    </div>
+
+  </div><!-- /main col -->
+
+  <!-- SIDEBAR -->
+  <aside>
+
+    <!-- My info -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header"><span>My Info</span></div>
+      <div class="sidebar-card-body">
+        <div class="info-row">
+          <span class="info-label">Name</span>
+          <span class="info-value">Jennifer K.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Town</span>
+          <span class="info-value">Cresskill</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Child's grade</span>
+          <span class="info-value">11th grade</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Notifications</span>
+          <span class="info-value" style="font-size:0.8rem;">Text + Email</span>
+        </div>
+        <div style="margin-top:0.75rem;">
+          <a href="#" style="font-size:0.8rem;color:var(--navy);font-weight:600;text-decoration:underline;">Edit my info</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saved tutors -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header"><span>Saved Tutors</span></div>
+      <div class="sidebar-card-body">
+        <a href="bergen-tutors-profile-v2.html" class="saved-tutor">
+          <div class="saved-avatar">SM</div>
+          <div class="saved-info">
+            <div class="saved-name">Mrs. Sarah Mitchell</div>
+            <div class="saved-detail">SAT Math · Cresskill</div>
+          </div>
+          <span class="saved-contact">View</span>
+        </a>
+        <a href="bergen-tutors-profile-v2.html" class="saved-tutor">
+          <div class="saved-avatar">JL</div>
+          <div class="saved-info">
+            <div class="saved-name">Ms. Jennifer Lee</div>
+            <div class="saved-detail">SAT Math · Virtual</div>
+          </div>
+          <span class="saved-contact">View</span>
+        </a>
+        <div style="margin-top:0.85rem;">
+          <a href="bergen-tutors-search-results-v1.html" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;">Browse more tutors</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- How it works reminder -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header"><span>What Happens Next</span></div>
+      <div class="sidebar-card-body" style="font-size:0.83rem;color:var(--text);display:flex;flex-direction:column;gap:0.7rem;">
+        <div style="display:flex;gap:0.65rem;align-items:flex-start;">
+          <div style="width:20px;height:20px;border-radius:50%;background:var(--navy);color:var(--white);font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.1rem;">1</div>
+          <div>Review tutor responses and reply to ones you like.</div>
+        </div>
+        <div style="display:flex;gap:0.65rem;align-items:flex-start;">
+          <div style="width:20px;height:20px;border-radius:50%;background:var(--navy);color:var(--white);font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.1rem;">2</div>
+          <div>Agree on a time and first session directly with the tutor.</div>
+        </div>
+        <div style="display:flex;gap:0.65rem;align-items:flex-start;">
+          <div style="width:20px;height:20px;border-radius:50%;background:var(--navy);color:var(--white);font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.1rem;">3</div>
+          <div>Payment is handled directly — cash, Venmo, or whatever works for both of you.</div>
+        </div>
+        <div style="margin-top:0.25rem;font-size:0.78rem;color:var(--text-light);font-style:italic;">Bergen Tutors never handles payments.</div>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /dashboard-layout -->
+
+</body>
+</html>

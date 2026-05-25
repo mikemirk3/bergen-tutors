@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bergen Tutors — Set Your Availability</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-mid: #243456;
+    --navy-light: #2a3d62;
+    --gold: #c8a455;
+    --gold-dark: #a8873a;
+    --gold-light: #f5edda;
+    --cream: #faf8f4;
+    --white: #ffffff;
+    --text: #2c2c2c;
+    --text-light: #6b7280;
+    --green: #2d8a5e;
+    --green-light: #e8f5ee;
+    --red: #c0392b;
+    --red-light: #fdecea;
+    --border: #e5e2dc;
+    --shadow: 0 2px 16px rgba(26, 39, 68, 0.08);
+    --shadow-lg: 0 8px 32px rgba(26, 39, 68, 0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--navy);
+    padding: 0 2rem;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--gold);
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+  }
+  .nav-logo-seal { width: 46px; height: 46px; flex-shrink: 0; }
+  .nav-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .nav-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .nav-subtitle {
+    font-size: 0.62rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-weight: 600;
+  }
+  .nav-back {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .nav-back:hover { color: var(--white); }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  .page-header { margin-bottom: 2rem; }
+  .page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .page-header p {
+    font-size: 1rem;
+    color: var(--text-light);
+    max-width: 640px;
+    line-height: 1.65;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+  .card-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .legend {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-size: 0.82rem;
+    color: var(--text-light);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+  .legend-swatch.available { background: var(--gold); border-color: var(--gold-dark); }
+  .legend-swatch.unavailable { background: var(--white); }
+
+  .toolbar-right {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .tool-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--white);
+    color: var(--navy);
+    border: 1.5px solid var(--border);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .tool-btn:hover {
+    border-color: var(--navy);
+    background: rgba(26, 39, 68, 0.02);
+  }
+  .tool-btn.danger { color: var(--red); }
+  .tool-btn.danger:hover { border-color: var(--red); background: var(--red-light); }
+
+  /* TIME RANGE TOGGLE - now more descriptive */
+  .range-toggle {
+    display: inline-flex;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 2px;
+    font-size: 0.8rem;
+  }
+  .range-toggle button {
+    background: transparent;
+    border: none;
+    padding: 0.4rem 0.85rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .range-toggle button.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  /* Discoverability hint above the grid */
+  .grid-hint {
+    background: rgba(200, 164, 85, 0.1);
+    border-left: 3px solid var(--gold);
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.5;
+    border-radius: 0 6px 6px 0;
+  }
+  .grid-hint strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* AVAILABILITY GRID */
+  .grid-wrap {
+    position: relative;
+    overflow-x: auto;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .avail-grid {
+    display: grid;
+    grid-template-columns: 70px repeat(7, 1fr);
+    gap: 2px;
+    min-width: 680px;
+    background: var(--border);
+    padding: 2px;
+    border-radius: 8px;
+  }
+  .grid-header-cell {
+    background: var(--navy);
+    color: var(--white);
+    padding: 0.65rem 0.25rem;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+  }
+  .grid-header-cell.corner {
+    background: var(--navy-mid);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+  .grid-header-cell .day-full { display: block; font-size: 0.68rem; opacity: 0.7; font-weight: 400; letter-spacing: 0; margin-top: 0.1rem; }
+  .grid-header-cell.weekend { background: var(--navy-light); }
+
+  .time-label {
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.6rem;
+    font-size: 0.72rem;
+    color: var(--text-light);
+    font-weight: 500;
+    border-radius: 4px;
+  }
+  .time-label.half { color: transparent; }
+
+  .time-cell {
+    background: var(--white);
+    min-height: 26px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.08s;
+    position: relative;
+  }
+  .time-cell:hover { background: var(--gold-light); }
+  .time-cell.available {
+    background: var(--gold);
+  }
+  .time-cell.available:hover {
+    background: var(--gold-dark);
+  }
+  .time-cell.hour-start {
+    border-top: 1px solid rgba(26, 39, 68, 0.06);
+  }
+  .time-cell.dragging-on { background: var(--gold) !important; }
+  .time-cell.dragging-off { background: var(--white) !important; }
+
+  /* Quick actions */
+  .quick-actions {
+    margin-top: 1.25rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .quick-actions-label {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-right: 0.25rem;
+  }
+  .quick-chip {
+    padding: 0.4rem 0.85rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+    color: var(--navy);
+  }
+  .quick-chip:hover {
+    border-color: var(--gold);
+    background: var(--gold-light);
+  }
+
+  .summary-bar {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .summary-stat { color: var(--white); }
+  .summary-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .summary-stat-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.2rem;
+  }
+  .summary-stats {
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  .seasonal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .season-option {
+    padding: 1.25rem;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: var(--cream);
+  }
+  .season-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .season-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--navy);
+    font-weight: 600;
+  }
+  .season-desc {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin-bottom: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .toggle {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .toggle-slider::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: var(--white);
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .toggle input:checked + .toggle-slider { background: var(--green); }
+  .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+  .season-note {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    background: var(--white);
+    resize: vertical;
+    min-height: 60px;
+    line-height: 1.5;
+  }
+  .season-note:focus {
+    outline: none;
+    border-color: var(--navy);
+  }
+
+  .pause-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .pause-info { flex: 1; }
+  .pause-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .pause-desc {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.55;
+  }
+
+  .page-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.8rem 1.75rem;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+    text-decoration: none;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-navy {
+    background: var(--navy);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(26, 39, 68, 0.2);
+  }
+  .btn-ghost {
+    background: none;
+    border: none;
+    color: var(--text-light);
+  }
+
+  .hover-tooltip {
+    position: fixed;
+    background: var(--navy);
+    color: var(--white);
+    padding: 0.35rem 0.7rem;
+    border-radius: 5px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    pointer-events: none;
+    z-index: 1000;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.12s;
+  }
+  .hover-tooltip.visible { opacity: 1; }
+
+  .info-box {
+    background: var(--gold-light);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 0.85rem 1.1rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-size: 0.85rem;
+    color: #6b5a2e;
+    line-height: 1.55;
+  }
+  .info-box svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 0.1rem;
+    color: var(--gold-dark);
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 1.5rem 1rem 3rem; }
+    .card { padding: 1.25rem; }
+    .page-header h1 { font-size: 1.5rem; }
+    .toolbar { flex-direction: column; align-items: flex-start; }
+    .seasonal-grid { grid-template-columns: 1fr; }
+    .summary-stats { gap: 1.5rem; }
+    .summary-stat-num { font-size: 1.3rem; }
+    .grid-header-cell .day-full { display: none; }
+    .legend { font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">
+    <svg class="nav-logo-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="96" fill="none" stroke="#c8a455" stroke-width="3"/>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="#c8a455" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="85" fill="#1a2744"/>
+      <circle cx="100" cy="6" r="3" fill="#c8a455"/>
+      <circle cx="100" cy="194" r="3" fill="#c8a455"/>
+      <circle cx="6" cy="100" r="3" fill="#c8a455"/>
+      <circle cx="194" cy="100" r="3" fill="#c8a455"/>
+      <defs>
+        <path id="topArc" d="M 30,100 a 70,70 0 0,1 140,0" fill="none"/>
+        <path id="bottomArc" d="M 170,100 a 70,70 0 0,1 -140,0" fill="none"/>
+      </defs>
+      <text font-family="'Playfair Display', serif" font-size="13" fill="#c8a455" letter-spacing="5" font-weight="600">
+        <textPath href="#topArc" startOffset="50%" text-anchor="middle">BERGEN TUTORS</textPath>
+      </text>
+      <text font-family="'Playfair Display', serif" font-size="11" fill="#c8a455" letter-spacing="4" font-style="italic">
+        <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">DOCENDO DISCIMUS</textPath>
+      </text>
+      <g transform="translate(100, 95)" fill="none" stroke="#c8a455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M -28,12 L -28,-8 C -28,-8 -14,-14 0,-8 C 14,-14 28,-8 28,-8 L 28,12"/>
+        <line x1="0" y1="-8" x2="0" y2="12"/>
+        <path d="M -28,12 C -14,6 0,12 0,12 C 0,12 14,6 28,12"/>
+        <line x1="0" y1="-8" x2="0" y2="-22"/>
+        <path d="M -5,-26 C -5,-32 0,-36 0,-36 C 0,-36 5,-32 5,-26 C 5,-22 0,-20 0,-20 C 0,-20 -5,-22 -5,-26 Z" fill="#c8a455" stroke="none"/>
+      </g>
+    </svg>
+    <div class="nav-text">
+      <span class="nav-title">Bergen Tutors</span>
+      <span class="nav-subtitle">Docendo Discimus</span>
+    </div>
+  </a>
+  <a href="#" class="nav-back">← Back to Sign-Up</a>
+</nav>
+
+<div class="page">
+
+  <div class="page-header">
+    <h1>Set Your Weekly Availability</h1>
+    <p>Paint the times you're generally open to tutor. Families will see this on your profile and use it to find tutors whose schedules match their kids'. You can always adjust or pause your availability later.</p>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">Your Typical Week</h2>
+    <p class="card-desc">Click or drag across cells to mark when you're available. Each cell is 30 minutes.</p>
+
+    <div class="info-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <div>These are your <strong>general</strong> windows — you're not committing to every slot. When a family reaches out, you'll confirm the exact time with them directly.</div>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <div class="legend">
+          <span class="legend-item"><span class="legend-swatch available"></span> Available</span>
+          <span class="legend-item"><span class="legend-swatch unavailable"></span> Not available</span>
+        </div>
+      </div>
+      <div class="toolbar-right">
+        <div class="range-toggle">
+          <button class="active" onclick="setRange('default', this)">Afternoons & evenings</button>
+          <button onclick="setRange('extended', this)">Show mornings (8am–10pm)</button>
+        </div>
+        <button class="tool-btn danger" onclick="clearAll()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          Clear all
+        </button>
+      </div>
+    </div>
+
+    <div class="grid-hint">
+      Need to mark <strong>weekend mornings</strong>, <strong>homeschool hours</strong>, or any time before 2pm? Click <strong>Show mornings</strong> above the grid.
+    </div>
+
+    <div class="grid-wrap">
+      <div class="avail-grid" id="availGrid"></div>
+    </div>
+
+    <div class="quick-actions">
+      <span class="quick-actions-label">Quick fill:</span>
+      <span class="quick-chip" onclick="quickFill('weekday-evenings')">Weekday evenings (3–8pm)</span>
+      <span class="quick-chip" onclick="quickFill('weekends')">Weekend mornings</span>
+      <span class="quick-chip" onclick="quickFill('after-school')">After school (3–6pm)</span>
+      <span class="quick-chip" onclick="quickFill('late-virtual')">Late virtual (8–10pm)</span>
+    </div>
+
+    <div class="summary-bar">
+      <div class="summary-stats">
+        <div class="summary-stat">
+          <div class="summary-stat-num" id="totalHours">0</div>
+          <div class="summary-stat-label">Hours / week</div>
+        </div>
+        <div class="summary-stat">
+          <div class="summary-stat-num" id="totalDays">0</div>
+          <div class="summary-stat-label">Days / week</div>
+        </div>
+      </div>
+      <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); max-width: 260px; text-align: right;">
+        <span id="matchingHint">Paint a few blocks to see availability hints</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">Seasonal Availability</h2>
+    <p class="card-desc">Many teachers tutor on a different schedule during summer or breaks. Let families know what to expect.</p>
+
+    <div class="seasonal-grid">
+      <div class="season-option">
+        <div class="season-header">
+          <span class="season-name">☀️ Summer</span>
+          <label class="toggle">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="season-desc">Are you available to tutor during summer?</div>
+        <textarea class="season-note" placeholder="Optional: If your summer schedule is different, note it here. E.g., 'Weekday mornings available June–August.'"></textarea>
+      </div>
+      <div class="season-option">
+        <div class="season-header">
+          <span class="season-name">❄️ School Breaks</span>
+          <label class="toggle">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="season-desc">Available during winter break, spring break, and long weekends?</div>
+        <textarea class="season-note" placeholder="Optional: Any notes on break availability."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pause-card">
+      <div class="pause-info">
+        <div class="pause-title">Temporarily pause my profile</div>
+        <div class="pause-desc">Going on vacation or taking a break from tutoring? Hide your profile from families without losing your settings. You can resume anytime.</div>
+      </div>
+      <label class="toggle">
+        <input type="checkbox">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="page-actions">
+    <button class="btn btn-ghost">← Back</button>
+    <button class="btn btn-navy">Save & Continue →</button>
+  </div>
+
+</div>
+
+<div class="hover-tooltip" id="tooltip"></div>
+
+<script>
+  var DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var DAYS_FULL = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  var ranges = {
+    'default': { start: 14, end: 22 },   // 2pm - 10pm
+    'extended': { start: 8, end: 22 }    // 8am - 10pm
+  };
+  var currentRange = 'default';
+
+  var availability = {};
+  for (var d = 0; d < 7; d++) availability[d] = {};
+
+  var isDragging = false;
+  var dragMode = null;
+
+  function formatTime(halfHour) {
+    var hour = Math.floor(halfHour / 2);
+    var min = (halfHour % 2) * 30;
+    var period = hour >= 12 ? 'pm' : 'am';
+    var displayHour = hour % 12;
+    if (displayHour === 0) displayHour = 12;
+    return displayHour + (min === 30 ? ':30' : '') + period;
+  }
+
+  function formatTimeRange(startHalf, endHalf) {
+    return formatTime(startHalf) + '–' + formatTime(endHalf);
+  }
+
+  function renderGrid() {
+    var grid = document.getElementById('availGrid');
+    grid.innerHTML = '';
+
+    var range = ranges[currentRange];
+    var startSlot = range.start * 2;
+    var endSlot = range.end * 2;
+
+    var cornerCell = document.createElement('div');
+    cornerCell.className = 'grid-header-cell corner';
+    cornerCell.textContent = 'TIME';
+    grid.appendChild(cornerCell);
+
+    for (var d = 0; d < 7; d++) {
+      var h = document.createElement('div');
+      h.className = 'grid-header-cell';
+      if (d === 0 || d === 6) h.className += ' weekend';
+      h.innerHTML = DAYS[d] + '<span class="day-full">' + DAYS_FULL[d] + '</span>';
+      grid.appendChild(h);
+    }
+
+    for (var slot = startSlot; slot < endSlot; slot++) {
+      var isHourStart = slot % 2 === 0;
+
+      var timeLabel = document.createElement('div');
+      timeLabel.className = 'time-label' + (isHourStart ? '' : ' half');
+      if (isHourStart) {
+        timeLabel.textContent = formatTime(slot);
+      } else {
+        timeLabel.textContent = '·';
+      }
+      grid.appendChild(timeLabel);
+
+      for (var d = 0; d < 7; d++) {
+        var cell = document.createElement('div');
+        cell.className = 'time-cell';
+        if (isHourStart) cell.className += ' hour-start';
+        if (availability[d][slot]) cell.className += ' available';
+        cell.dataset.day = d;
+        cell.dataset.slot = slot;
+        attachCellHandlers(cell);
+        grid.appendChild(cell);
+      }
+    }
+
+    updateSummary();
+  }
+
+  function attachCellHandlers(cell) {
+    cell.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      isDragging = true;
+      var day = parseInt(cell.dataset.day, 10);
+      var slot = parseInt(cell.dataset.slot, 10);
+      var wasAvailable = !!availability[day][slot];
+      dragMode = wasAvailable ? 'off' : 'on';
+      toggleCell(day, slot, dragMode === 'on');
+    });
+
+    cell.addEventListener('mouseenter', function(e) {
+      var day = parseInt(cell.dataset.day, 10);
+      var slot = parseInt(cell.dataset.slot, 10);
+      showTooltip(e, day, slot);
+      if (isDragging) {
+        toggleCell(day, slot, dragMode === 'on');
+      }
+    });
+
+    cell.addEventListener('mousemove', function(e) {
+      var day = parseInt(cell.dataset.day, 10);
+      var slot = parseInt(cell.dataset.slot, 10);
+      showTooltip(e, day, slot);
+    });
+
+    cell.addEventListener('mouseleave', hideTooltip);
+
+    cell.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      isDragging = true;
+      var day = parseInt(cell.dataset.day, 10);
+      var slot = parseInt(cell.dataset.slot, 10);
+      var wasAvailable = !!availability[day][slot];
+      dragMode = wasAvailable ? 'off' : 'on';
+      toggleCell(day, slot, dragMode === 'on');
+    });
+  }
+
+  document.addEventListener('mouseup', function() { isDragging = false; dragMode = null; });
+  document.addEventListener('touchend', function() { isDragging = false; dragMode = null; });
+
+  document.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    var touch = e.touches[0];
+    var el = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (el && el.classList.contains('time-cell')) {
+      var day = parseInt(el.dataset.day, 10);
+      var slot = parseInt(el.dataset.slot, 10);
+      toggleCell(day, slot, dragMode === 'on');
+    }
+  });
+
+  function toggleCell(day, slot, makeAvailable) {
+    availability[day][slot] = makeAvailable;
+    var cell = document.querySelector('[data-day="' + day + '"][data-slot="' + slot + '"]');
+    if (cell) {
+      if (makeAvailable) cell.classList.add('available');
+      else cell.classList.remove('available');
+    }
+    updateSummary();
+  }
+
+  function clearAll() {
+    if (!confirm('Clear all your availability? You can always re-paint it.')) return;
+    for (var d = 0; d < 7; d++) availability[d] = {};
+    renderGrid();
+  }
+
+  function setRange(name, btn) {
+    currentRange = name;
+    document.querySelectorAll('.range-toggle button').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    renderGrid();
+  }
+
+  function quickFill(preset) {
+    if (preset === 'weekday-evenings') {
+      for (var d = 1; d <= 5; d++) {
+        for (var s = 30; s < 40; s++) availability[d][s] = true;
+      }
+    } else if (preset === 'weekends') {
+      // Auto-switch to extended range so weekend mornings are visible
+      currentRange = 'extended';
+      document.querySelectorAll('.range-toggle button').forEach(function(b, i) {
+        b.classList.toggle('active', i === 1);
+      });
+      [0, 6].forEach(function(d) {
+        for (var s = 18; s < 24; s++) availability[d][s] = true;
+      });
+    } else if (preset === 'after-school') {
+      for (var d = 1; d <= 5; d++) {
+        for (var s = 30; s < 36; s++) availability[d][s] = true;
+      }
+    } else if (preset === 'late-virtual') {
+      for (var d = 1; d <= 5; d++) {
+        for (var s = 40; s < 44; s++) availability[d][s] = true;
+      }
+    }
+    renderGrid();
+  }
+
+  function updateSummary() {
+    var totalSlots = 0;
+    var daysWithSlots = 0;
+    for (var d = 0; d < 7; d++) {
+      var dayHasSlot = false;
+      for (var key in availability[d]) {
+        if (availability[d][key]) {
+          totalSlots++;
+          dayHasSlot = true;
+        }
+      }
+      if (dayHasSlot) daysWithSlots++;
+    }
+    var hours = totalSlots / 2;
+    document.getElementById('totalHours').textContent = hours.toFixed(hours % 1 === 0 ? 0 : 1);
+    document.getElementById('totalDays').textContent = daysWithSlots;
+
+    var hint = document.getElementById('matchingHint');
+    if (hours === 0) {
+      hint.textContent = 'Paint a few blocks to get started';
+    } else if (hours < 4) {
+      hint.textContent = 'Tutors with more availability receive more inquiries. Aim for 6+ hours/week.';
+    } else if (hours < 8) {
+      hint.textContent = 'Good start — your schedule will match most families.';
+    } else {
+      hint.textContent = 'Excellent — wide availability helps you match more families.';
+    }
+  }
+
+  var tooltipEl = document.getElementById('tooltip');
+  function showTooltip(e, day, slot) {
+    var text = DAYS_FULL[day] + ' · ' + formatTimeRange(slot, slot + 1);
+    tooltipEl.textContent = text;
+    tooltipEl.style.left = (e.clientX + 12) + 'px';
+    tooltipEl.style.top = (e.clientY + 12) + 'px';
+    tooltipEl.classList.add('visible');
+  }
+  function hideTooltip() {
+    tooltipEl.classList.remove('visible');
+  }
+
+  // Sample data - Mrs. Mitchell's schedule
+  // Tue, Thu 3pm-8pm
+  [2, 4].forEach(function(d) {
+    for (var s = 30; s < 40; s++) availability[d][s] = true;
+  });
+  // Sat 9am-12pm (only visible if user clicks "Show mornings")
+  for (var s = 18; s < 24; s++) availability[6][s] = true;
+
+  renderGrid();
+</script>
+
+</body>
+</html>
