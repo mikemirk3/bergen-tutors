@@ -675,7 +675,7 @@
 
 <!-- ==================== NAV ==================== -->
 <nav>
-  <a href="#" class="nav-brand">
+  <a href="index.html" class="nav-brand">
     <svg class="nav-logo-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
       <circle cx="100" cy="100" r="96" fill="none" stroke="#c8a455" stroke-width="3"/>
       <circle cx="100" cy="100" r="88" fill="none" stroke="#c8a455" stroke-width="1.5"/>
@@ -718,10 +718,10 @@
   </a>
   <div class="nav-links">
     <a href="bergen-tutors-search-results-v1.html">Find a Tutor</a>
-    <a href="#">Subjects</a>
-    <a href="#">Towns</a>
-    <a href="#">For Educators</a>
-    <a href="#" class="nav-cta">List Your Profile</a>
+    <a href="bergen-tutors-search-results-v1.html">Subjects</a>
+    <a href="bergen-tutors-search-results-v1.html">Towns</a>
+    <a href="bergen-tutors-signup-v3.html">For Educators</a>
+    <a href="bergen-tutors-signup-v3.html" class="nav-cta">List Your Profile</a>
   </div>
 </nav>
 
@@ -746,21 +746,10 @@
               oninput="heroFilter(this.value)" autocomplete="off" />
             <div id="heroSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:50;background:var(--white);border:1.5px solid var(--navy);border-radius:0 0 8px 8px;box-shadow:0 8px 24px rgba(26,39,68,0.15);max-height:180px;overflow-y:auto;"></div>
           </div>
-          <div style="width:145px;border-right:1px solid rgba(255,255,255,0.12);">
+          <div style="width:165px;border-right:1px solid rgba(255,255,255,0.12);">
             <div style="padding:0.25rem 1rem 0;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);opacity:0.85;">Town</div>
-            <select id="heroTown" style="width:100%;background:transparent;border:none;outline:none;padding:0.1rem 0.75rem 0.55rem;font-family:'Source Sans 3',sans-serif;font-size:0.88rem;color:var(--white);appearance:none;-webkit-appearance:none;cursor:pointer;">
-              <option value="" style="color:#333;">Any town</option>
-              <option style="color:#333;">Cresskill</option><option style="color:#333;">Tenafly</option>
-              <option style="color:#333;">Ridgewood</option><option style="color:#333;">Englewood</option>
-              <option style="color:#333;">Fort Lee</option><option style="color:#333;">Paramus</option>
-              <option style="color:#333;">Hackensack</option><option style="color:#333;">Fair Lawn</option>
-              <option style="color:#333;">Glen Rock</option><option style="color:#333;">Mahwah</option>
-              <option style="color:#333;">Ramsey</option><option style="color:#333;">Westwood</option>
-              <option style="color:#333;">Wyckoff</option><option style="color:#333;">Franklin Lakes</option>
-              <option style="color:#333;">Allendale</option><option style="color:#333;">Closter</option>
-              <option style="color:#333;">Demarest</option><option style="color:#333;">River Vale</option>
-              <option style="color:#333;">Old Tappan</option><option style="color:#333;">Park Ridge</option>
-            </select>
+            <input id="heroTown" type="text" placeholder="Any town in NJ…"
+              style="width:100%;background:transparent;border:none;outline:none;padding:0.1rem 0.75rem 0.55rem;font-family:'Source Sans 3',sans-serif;font-size:0.88rem;color:var(--white);" autocomplete="off" />
           </div>
           <button onclick="heroSearch()" style="background:var(--gold);border:none;padding:0 1.25rem;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:0 8px 8px 0;flex-shrink:0;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a2744" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -798,6 +787,7 @@
   </div>
 </div>
 
+<div id="how-it-works"></div>
 <!-- ==================== HOW IT WORKS ==================== -->
 <div class="section">
   <div class="section-header">
@@ -901,7 +891,7 @@
           <span>14 yrs exp · In-Person & Virtual</span>
           <span class="tutor-card-price">$$</span>
         </div>
-        <a href="#" class="tutor-card-link">View Profile</a>
+        <a href="bergen-tutors-profile-v2.html" class="tutor-card-link">View Profile</a>
       </div>
     </div>
 
@@ -929,7 +919,7 @@
           <span>9 yrs exp · In-Person & Virtual</span>
           <span class="tutor-card-price">$$</span>
         </div>
-        <a href="#" class="tutor-card-link">View Profile</a>
+        <a href="bergen-tutors-profile-v2.html" class="tutor-card-link">View Profile</a>
       </div>
     </div>
 
@@ -956,7 +946,7 @@
           <span>28 yrs exp · In-Person Only</span>
           <span class="tutor-card-price">$</span>
         </div>
-        <a href="#" class="tutor-card-link">View Profile</a>
+        <a href="bergen-tutors-profile-v2.html" class="tutor-card-link">View Profile</a>
       </div>
     </div>
 
@@ -1089,7 +1079,7 @@
     <div class="cta-card">
       <h3>Are You an Educator?</h3>
       <p>Join Bergen County's trusted tutoring network. List your profile, set your own rates, and connect with local families. Plans start at $19/month.</p>
-      <a href="#" class="btn btn-outline">List Your Profile →</a>
+      <a href="bergen-tutors-signup-v3.html" class="btn btn-outline">List Your Profile →</a>
     </div>
   </div>
 </section>
@@ -1135,14 +1125,14 @@
       <div class="footer-col">
         <h4>For Families</h4>
         <a href="bergen-tutors-search-results-v1.html">Find a Tutor</a>
-        <a href="#">Browse by Town</a>
-        <a href="#">Browse by Subject</a>
-        <a href="#">How It Works</a>
+        <a href="bergen-tutors-search-results-v1.html">Browse by Town</a>
+        <a href="bergen-tutors-search-results-v1.html">Browse by Subject</a>
+        <a href="index.html#how-it-works">How It Works</a>
       </div>
       <div class="footer-col">
         <h4>For Educators</h4>
-        <a href="#">List Your Profile</a>
-        <a href="#">Pricing</a>
+        <a href="bergen-tutors-signup-v3.html">List Your Profile</a>
+        <a href="bergen-tutors-signup-v3.html">Pricing</a>
         <a href="#">FAQ</a>
       </div>
       <div class="footer-col">
