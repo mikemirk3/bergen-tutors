@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bergen Tutors — Verified NJ Educators, Right in Your Neighborhood</title>
+<title>Bergen Tutors — Bergen County's Tutoring Network, Right in Your Neighborhood</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -134,13 +134,9 @@
     max-width: 1080px;
     margin: 0 auto;
     padding: 5rem 2rem 5.5rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 4rem;
-    align-items: center;
     position: relative;
   }
-  .hero-content { max-width: 600px; }
+  .hero-content { max-width: 640px; }
   .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -210,25 +206,7 @@
     box-shadow: var(--shadow);
   }
 
-  /* Hero NJ map */
-  .hero-map-wrap {
-    position: relative;
-    width: 300px;
-    height: 360px;
-    flex-shrink: 0;
-  }
-  .hero-map-glow {
-    position: absolute;
-    inset: -30px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 50% 30%, rgba(200,164,85,0.15) 0%, transparent 65%);
-  }
-  .hero-map-wrap svg {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-  }
+  /* Hero map removed */
 
   /* STATS BAR */
   .stats-bar {
@@ -714,7 +692,7 @@
         <textPath href="#topArc" startOffset="50%" text-anchor="middle">BERGEN TUTORS</textPath>
       </text>
       <text font-family="'Playfair Display', serif" font-size="11" fill="#c8a455" letter-spacing="4" font-style="italic">
-        <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">DOCENDO DISCIMUS</textPath>
+        <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">Certified NJ Teachers</textPath>
       </text>
       <g transform="translate(100, 95)" fill="none" stroke="#c8a455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M -28,12 L -28,-8 C -28,-8 -14,-14 0,-8 C 14,-14 28,-8 28,-8 L 28,12" fill="none"/>
@@ -754,10 +732,10 @@
     <div class="hero-content">
       <div class="hero-badge fade-up">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        Every Tutor is a Verified NJ Educator
+        Every Tutor is a Certified NJ Teacher
       </div>
       <h1 class="fade-up fade-up-d1">Bergen County's<br>Trusted Tutoring<br><em>Network</em></h1>
-      <p class="hero-sub fade-up fade-up-d2">Serving families in Bergen County — home to 9 of New Jersey's top 50 public high schools, in the #1 ranked state for education in America. Every tutor on Bergen Tutors is a verified New Jersey educator who knows your schools, your curriculum, and your kids.</p>
+      <p class="hero-sub fade-up fade-up-d2">Bergen County is ranked <strong style="color:var(--gold);">#4 in the nation for education</strong> — home to the #1 school district in New Jersey and 10 of the state's top 50 high schools. Every tutor on Bergen Tutors is a certified NJ teacher who knows your schools, your curriculum, and your kids.</p>
       <!-- Hero search bar -->
       <div class="fade-up fade-up-d3" style="margin-bottom:1.25rem;position:relative;">
         <div style="display:flex;background:rgba(255,255,255,0.08);border:1.5px solid rgba(200,164,85,0.4);border-radius:10px;overflow:visible;max-width:520px;">
@@ -795,65 +773,6 @@
         <a href="bergen-tutors-signup-v3.html" class="btn btn-outline">I'm an Educator →</a>
       </div>
     </div>
-    <div class="hero-map-wrap fade-up fade-up-d4">
-      <div class="hero-map-glow"></div>
-      <svg viewBox="0 0 350 560" xmlns="http://www.w3.org/2000/svg">
-        
-        <!-- NJ State outline - traced from reference map -->
-        <!-- The state runs NE to SW, narrow at top (Bergen/Passaic), widens in central NJ, narrows again at Cape May -->
-        <path d="
-          M 198,22 L 204,18 212,16 220,14 228,16 236,14 244,18 252,16 258,20
-          L 264,24 270,22 276,28 280,36 282,44 280,52 278,58
-          L 280,66 284,74 286,82 284,90 280,96 278,104
-          L 282,112 286,120 288,130 286,138 282,146
-          L 280,154 282,162 286,170 290,180 292,190
-          L 290,200 286,208 288,216 292,226 296,236
-          L 298,246 296,256 292,264 288,272 290,280
-          L 294,290 296,300 294,310 290,318 286,326
-          L 282,334 276,342 270,350 264,358 256,366
-          L 248,374 240,380 232,388 224,396 216,404
-          L 208,412 198,418 188,424 178,430 168,436
-          L 158,442 148,448 140,454 132,460 126,466
-          L 120,472 114,478 108,484 104,490 100,496
-          L 96,502 94,508 98,512 104,510 112,506
-          L 120,500 126,494 132,488 138,482
-          L 132,478 124,474 116,468 110,460 106,452
-          L 102,442 100,432 98,420 96,408 94,396
-          L 92,384 90,370 88,356 88,342 90,328
-          L 92,314 94,300 94,286 92,272 90,258
-          L 88,244 88,230 90,216 92,202 96,190
-          L 100,178 104,166 108,156 114,146 120,136
-          L 126,126 132,118 138,110 144,102 150,94
-          L 156,86 162,78 168,70 174,62 180,54
-          L 186,46 192,38 196,30 198,22 Z
-        " fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linejoin="round"/>
-        
-        <!-- Bergen County - northeastern corner of NJ, highlighted in gold -->
-        <!-- Bergen is bordered by NY state line (north), Hudson River (east), Passaic County (west), Hudson/Essex (south) -->
-        <path d="
-          M 228,16 L 236,14 244,18 252,16 258,20
-          L 264,24 270,22 276,28 280,36 282,44 280,52 278,58
-          L 280,66 284,74 286,82 284,90 280,96
-          L 272,98 264,96 256,98 248,96 240,94
-          L 232,92 224,88 218,84 212,78 208,70
-          L 206,62 206,54 208,46 212,38 216,30
-          L 220,24 224,20 228,16 Z
-        " fill="var(--gold)" fill-opacity="0.85" stroke="var(--gold)" stroke-width="2" stroke-linejoin="round">
-          <animate attributeName="fill-opacity" values="0.7;0.95;0.7" dur="3s" repeatCount="indefinite"/>
-        </path>
-        
-        <!-- Gold star on Bergen County -->
-        <g transform="translate(248, 56)">
-          <polygon points="0,-18 5,-6 18,-6 8,3 12,16 0,8 -12,16 -8,3 -18,-6 -5,-6" 
-            fill="var(--gold)" stroke="var(--navy)" stroke-width="1.5" stroke-linejoin="round">
-            <animate attributeName="opacity" values="0.85;1;0.85" dur="2.5s" repeatCount="indefinite"/>
-          </polygon>
-        </g>
-        
-        <!-- "New Jersey" text along the body of the state -->
-        <text x="175" y="310" font-family="'Source Sans 3', sans-serif" font-size="18" fill="rgba(255,255,255,0.3)" font-weight="600" text-anchor="middle" letter-spacing="5" transform="rotate(-15, 175, 310)">NEW JERSEY</text>
-      </svg>
-    </div>
   </div>
 </section>
 
@@ -861,20 +780,20 @@
 <div class="stats-bar">
   <div class="stats-inner">
     <div class="stat-item">
-      <div class="stat-number">75+</div>
-      <div class="stat-label">School Districts</div>
+      <div class="stat-number">#4</div>
+      <div class="stat-label">County in the U.S. for Education</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">10</div>
+      <div class="stat-label">Top-50 NJ High Schools</div>
     </div>
     <div class="stat-item">
       <div class="stat-number">166K</div>
       <div class="stat-label">Students in Bergen County</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">70</div>
-      <div class="stat-label">Towns Served</div>
-    </div>
-    <div class="stat-item">
       <div class="stat-number">100%</div>
-      <div class="stat-label">Verified Educators</div>
+      <div class="stat-label">Certified NJ Teachers</div>
     </div>
   </div>
 </div>
@@ -1196,7 +1115,7 @@
             <textPath href="#topArc3" startOffset="50%" text-anchor="middle">BERGEN TUTORS</textPath>
           </text>
           <text font-family="serif" font-size="11" fill="#c8a455" letter-spacing="4" font-style="italic">
-            <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">DOCENDO DISCIMUS</textPath>
+            <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">Certified NJ Teachers</textPath>
           </text>
           <g transform="translate(100, 95)" fill="none" stroke="#c8a455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M -28,12 L -28,-8 C -28,-8 -14,-14 0,-8 C 14,-14 28,-8 28,-8 L 28,12"/>
