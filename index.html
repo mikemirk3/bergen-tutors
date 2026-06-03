@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bergen Tutors — Bergen County's Tutoring Network, Right in Your Neighborhood</title>
+<title>Bergen Tutors — Verified NJ Educators, Right in Your Neighborhood</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -79,7 +79,7 @@
     gap: 0.85rem;
     text-decoration: none;
   }
-  .nav-logo-seal { width: 46px; height: 46px; flex-shrink: 0; }
+  .nav-logo-seal { width: 56px; height: 56px; flex-shrink: 0; object-fit: contain; }
   .nav-text { display: flex; flex-direction: column; line-height: 1.15; }
   .nav-title {
     font-family: 'Playfair Display', serif;
@@ -134,9 +134,13 @@
     max-width: 1080px;
     margin: 0 auto;
     padding: 5rem 2rem 5.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
     position: relative;
   }
-  .hero-content { max-width: 640px; }
+  .hero-content { max-width: 600px; }
   .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -206,7 +210,25 @@
     box-shadow: var(--shadow);
   }
 
-  /* Hero map removed */
+  /* Hero NJ map */
+  .hero-map-wrap {
+    position: relative;
+    width: 300px;
+    height: 360px;
+    flex-shrink: 0;
+  }
+  .hero-map-glow {
+    position: absolute;
+    inset: -30px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 30%, rgba(200,164,85,0.15) 0%, transparent 65%);
+  }
+  .hero-map-wrap svg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
 
   /* STATS BAR */
   .stats-bar {
@@ -601,7 +623,7 @@
     align-items: center;
     gap: 0.75rem;
   }
-  .footer-seal { width: 36px; height: 36px; }
+  .footer-seal { width: 48px; height: 48px; object-fit: contain; }
   .footer-name {
     font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
@@ -675,53 +697,19 @@
 
 <!-- ==================== NAV ==================== -->
 <nav>
-  <a href="index.html" class="nav-brand">
-    <svg class="nav-logo-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="96" fill="none" stroke="#c8a455" stroke-width="3"/>
-      <circle cx="100" cy="100" r="88" fill="none" stroke="#c8a455" stroke-width="1.5"/>
-      <circle cx="100" cy="100" r="85" fill="#1a2744"/>
-      <circle cx="100" cy="6" r="3" fill="#c8a455"/>
-      <circle cx="100" cy="194" r="3" fill="#c8a455"/>
-      <circle cx="6" cy="100" r="3" fill="#c8a455"/>
-      <circle cx="194" cy="100" r="3" fill="#c8a455"/>
-      <defs>
-        <path id="topArc" d="M 30,100 a 70,70 0 0,1 140,0" fill="none"/>
-        <path id="bottomArc" d="M 170,100 a 70,70 0 0,1 -140,0" fill="none"/>
-      </defs>
-      <text font-family="'Playfair Display', serif" font-size="13" fill="#c8a455" letter-spacing="5" font-weight="600">
-        <textPath href="#topArc" startOffset="50%" text-anchor="middle">BERGEN TUTORS</textPath>
-      </text>
-      <text font-family="'Playfair Display', serif" font-size="11" fill="#c8a455" letter-spacing="4" font-style="italic">
-        <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">Certified NJ Teachers</textPath>
-      </text>
-      <g transform="translate(100, 95)" fill="none" stroke="#c8a455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M -28,12 L -28,-8 C -28,-8 -14,-14 0,-8 C 14,-14 28,-8 28,-8 L 28,12" fill="none"/>
-        <line x1="0" y1="-8" x2="0" y2="12"/>
-        <path d="M -28,12 C -14,6 0,12 0,12 C 0,12 14,6 28,12"/>
-        <line x1="0" y1="-8" x2="0" y2="-22"/>
-        <path d="M -5,-26 C -5,-32 0,-36 0,-36 C 0,-36 5,-32 5,-26 C 5,-22 0,-20 0,-20 C 0,-20 -5,-22 -5,-26 Z" fill="#c8a455" stroke="none"/>
-        <line x1="-8" y1="-30" x2="-12" y2="-34" stroke-width="1.5"/>
-        <line x1="8" y1="-30" x2="12" y2="-34" stroke-width="1.5"/>
-        <line x1="-10" y1="-24" x2="-15" y2="-24" stroke-width="1.5"/>
-        <line x1="10" y1="-24" x2="15" y2="-24" stroke-width="1.5"/>
-      </g>
-      <g fill="#c8a455">
-        <polygon points="40,100 42,95 44,100 42,105"/>
-        <polygon points="156,100 158,95 160,100 158,105"/>
-      </g>
-      <circle cx="100" cy="100" r="55" fill="none" stroke="#c8a455" stroke-width="0.75" stroke-dasharray="2,4"/>
-    </svg>
+  <a href="#" class="nav-brand">
+    <img class="nav-logo-seal" src="public/images/bergen-tutors-logo.png" alt="Bergen Tutors"/>
     <div class="nav-text">
       <span class="nav-title">Bergen Tutors</span>
-      <span class="nav-subtitle">Bergen County's Tutoring Network</span>
+      <span class="nav-subtitle">Real Teachers. Tutoring.</span>
     </div>
   </a>
   <div class="nav-links">
     <a href="bergen-tutors-search-results-v1.html">Find a Tutor</a>
-    <a href="bergen-tutors-search-results-v1.html">Subjects</a>
-    <a href="bergen-tutors-search-results-v1.html">Towns</a>
-    <a href="bergen-tutors-signup-v3.html">For Educators</a>
-    <a href="bergen-tutors-signup-v3.html" class="nav-cta">List Your Profile</a>
+    <a href="#">Subjects</a>
+    <a href="#">Towns</a>
+    <a href="#">For Educators</a>
+    <a href="#" class="nav-cta">List Your Profile</a>
   </div>
 </nav>
 
@@ -732,10 +720,10 @@
     <div class="hero-content">
       <div class="hero-badge fade-up">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        Every Tutor is a Certified NJ Teacher
+        Every Tutor is a Verified NJ Educator
       </div>
       <h1 class="fade-up fade-up-d1">Bergen County's<br>Trusted Tutoring<br><em>Network</em></h1>
-      <p class="hero-sub fade-up fade-up-d2">Bergen County is ranked <strong style="color:var(--gold);">#4 in the nation for education</strong> — home to the #1 school district in New Jersey and 10 of the state's top 50 high schools. Every tutor on Bergen Tutors is a certified NJ teacher who knows your schools, your curriculum, and your kids.</p>
+      <p class="hero-sub fade-up fade-up-d2">Serving families in Bergen County — home to 9 of New Jersey's top 50 public high schools, in the #1 ranked state for education in America. Every tutor on Bergen Tutors is a verified New Jersey educator who knows your schools, your curriculum, and your kids.</p>
       <!-- Hero search bar -->
       <div class="fade-up fade-up-d3" style="margin-bottom:1.25rem;position:relative;">
         <div style="display:flex;background:rgba(255,255,255,0.08);border:1.5px solid rgba(200,164,85,0.4);border-radius:10px;overflow:visible;max-width:520px;">
@@ -746,10 +734,21 @@
               oninput="heroFilter(this.value)" autocomplete="off" />
             <div id="heroSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:50;background:var(--white);border:1.5px solid var(--navy);border-radius:0 0 8px 8px;box-shadow:0 8px 24px rgba(26,39,68,0.15);max-height:180px;overflow-y:auto;"></div>
           </div>
-          <div style="width:165px;border-right:1px solid rgba(255,255,255,0.12);">
+          <div style="width:145px;border-right:1px solid rgba(255,255,255,0.12);">
             <div style="padding:0.25rem 1rem 0;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);opacity:0.85;">Town</div>
-            <input id="heroTown" type="text" placeholder="Any town in NJ…"
-              style="width:100%;background:transparent;border:none;outline:none;padding:0.1rem 0.75rem 0.55rem;font-family:'Source Sans 3',sans-serif;font-size:0.88rem;color:var(--white);" autocomplete="off" />
+            <select id="heroTown" style="width:100%;background:transparent;border:none;outline:none;padding:0.1rem 0.75rem 0.55rem;font-family:'Source Sans 3',sans-serif;font-size:0.88rem;color:var(--white);appearance:none;-webkit-appearance:none;cursor:pointer;">
+              <option value="" style="color:#333;">Any town</option>
+              <option style="color:#333;">Cresskill</option><option style="color:#333;">Tenafly</option>
+              <option style="color:#333;">Ridgewood</option><option style="color:#333;">Englewood</option>
+              <option style="color:#333;">Fort Lee</option><option style="color:#333;">Paramus</option>
+              <option style="color:#333;">Hackensack</option><option style="color:#333;">Fair Lawn</option>
+              <option style="color:#333;">Glen Rock</option><option style="color:#333;">Mahwah</option>
+              <option style="color:#333;">Ramsey</option><option style="color:#333;">Westwood</option>
+              <option style="color:#333;">Wyckoff</option><option style="color:#333;">Franklin Lakes</option>
+              <option style="color:#333;">Allendale</option><option style="color:#333;">Closter</option>
+              <option style="color:#333;">Demarest</option><option style="color:#333;">River Vale</option>
+              <option style="color:#333;">Old Tappan</option><option style="color:#333;">Park Ridge</option>
+            </select>
           </div>
           <button onclick="heroSearch()" style="background:var(--gold);border:none;padding:0 1.25rem;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:0 8px 8px 0;flex-shrink:0;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a2744" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -762,6 +761,65 @@
         <a href="bergen-tutors-signup-v3.html" class="btn btn-outline">I'm an Educator →</a>
       </div>
     </div>
+    <div class="hero-map-wrap fade-up fade-up-d4">
+      <div class="hero-map-glow"></div>
+      <svg viewBox="0 0 350 560" xmlns="http://www.w3.org/2000/svg">
+        
+        <!-- NJ State outline - traced from reference map -->
+        <!-- The state runs NE to SW, narrow at top (Bergen/Passaic), widens in central NJ, narrows again at Cape May -->
+        <path d="
+          M 198,22 L 204,18 212,16 220,14 228,16 236,14 244,18 252,16 258,20
+          L 264,24 270,22 276,28 280,36 282,44 280,52 278,58
+          L 280,66 284,74 286,82 284,90 280,96 278,104
+          L 282,112 286,120 288,130 286,138 282,146
+          L 280,154 282,162 286,170 290,180 292,190
+          L 290,200 286,208 288,216 292,226 296,236
+          L 298,246 296,256 292,264 288,272 290,280
+          L 294,290 296,300 294,310 290,318 286,326
+          L 282,334 276,342 270,350 264,358 256,366
+          L 248,374 240,380 232,388 224,396 216,404
+          L 208,412 198,418 188,424 178,430 168,436
+          L 158,442 148,448 140,454 132,460 126,466
+          L 120,472 114,478 108,484 104,490 100,496
+          L 96,502 94,508 98,512 104,510 112,506
+          L 120,500 126,494 132,488 138,482
+          L 132,478 124,474 116,468 110,460 106,452
+          L 102,442 100,432 98,420 96,408 94,396
+          L 92,384 90,370 88,356 88,342 90,328
+          L 92,314 94,300 94,286 92,272 90,258
+          L 88,244 88,230 90,216 92,202 96,190
+          L 100,178 104,166 108,156 114,146 120,136
+          L 126,126 132,118 138,110 144,102 150,94
+          L 156,86 162,78 168,70 174,62 180,54
+          L 186,46 192,38 196,30 198,22 Z
+        " fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linejoin="round"/>
+        
+        <!-- Bergen County - northeastern corner of NJ, highlighted in gold -->
+        <!-- Bergen is bordered by NY state line (north), Hudson River (east), Passaic County (west), Hudson/Essex (south) -->
+        <path d="
+          M 228,16 L 236,14 244,18 252,16 258,20
+          L 264,24 270,22 276,28 280,36 282,44 280,52 278,58
+          L 280,66 284,74 286,82 284,90 280,96
+          L 272,98 264,96 256,98 248,96 240,94
+          L 232,92 224,88 218,84 212,78 208,70
+          L 206,62 206,54 208,46 212,38 216,30
+          L 220,24 224,20 228,16 Z
+        " fill="var(--gold)" fill-opacity="0.85" stroke="var(--gold)" stroke-width="2" stroke-linejoin="round">
+          <animate attributeName="fill-opacity" values="0.7;0.95;0.7" dur="3s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Gold star on Bergen County -->
+        <g transform="translate(248, 56)">
+          <polygon points="0,-18 5,-6 18,-6 8,3 12,16 0,8 -12,16 -8,3 -18,-6 -5,-6" 
+            fill="var(--gold)" stroke="var(--navy)" stroke-width="1.5" stroke-linejoin="round">
+            <animate attributeName="opacity" values="0.85;1;0.85" dur="2.5s" repeatCount="indefinite"/>
+          </polygon>
+        </g>
+        
+        <!-- "New Jersey" text along the body of the state -->
+        <text x="175" y="310" font-family="'Source Sans 3', sans-serif" font-size="18" fill="rgba(255,255,255,0.3)" font-weight="600" text-anchor="middle" letter-spacing="5" transform="rotate(-15, 175, 310)">NEW JERSEY</text>
+      </svg>
+    </div>
   </div>
 </section>
 
@@ -769,25 +827,24 @@
 <div class="stats-bar">
   <div class="stats-inner">
     <div class="stat-item">
-      <div class="stat-number">#4</div>
-      <div class="stat-label">County in the U.S. for Education</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">10</div>
-      <div class="stat-label">Top-50 NJ High Schools</div>
+      <div class="stat-number">75+</div>
+      <div class="stat-label">School Districts</div>
     </div>
     <div class="stat-item">
       <div class="stat-number">166K</div>
       <div class="stat-label">Students in Bergen County</div>
     </div>
     <div class="stat-item">
+      <div class="stat-number">70</div>
+      <div class="stat-label">Towns Served</div>
+    </div>
+    <div class="stat-item">
       <div class="stat-number">100%</div>
-      <div class="stat-label">Certified NJ Teachers</div>
+      <div class="stat-label">Verified Educators</div>
     </div>
   </div>
 </div>
 
-<div id="how-it-works"></div>
 <!-- ==================== HOW IT WORKS ==================== -->
 <div class="section">
   <div class="section-header">
@@ -805,7 +862,7 @@
     <div class="how-card">
       <div class="how-number">2</div>
       <h3>Read & Compare</h3>
-      <p>View detailed profiles with parent testimonials, subjects taught, availability, and pricing tiers. Find someone who fits your child's needs and your schedule.</p>
+      <p>View detailed profiles with parent testimonials, subjects taught, and availability. Find someone who fits your child's needs and your schedule.</p>
       <span class="how-arrow">→</span>
     </div>
     <div class="how-card">
@@ -891,7 +948,7 @@
           <span>14 yrs exp · In-Person & Virtual</span>
           <span class="tutor-card-price">$$</span>
         </div>
-        <a href="bergen-tutors-profile-v2.html" class="tutor-card-link">View Profile</a>
+        <a href="#" class="tutor-card-link">View Profile</a>
       </div>
     </div>
 
@@ -919,7 +976,7 @@
           <span>9 yrs exp · In-Person & Virtual</span>
           <span class="tutor-card-price">$$</span>
         </div>
-        <a href="bergen-tutors-profile-v2.html" class="tutor-card-link">View Profile</a>
+        <a href="#" class="tutor-card-link">View Profile</a>
       </div>
     </div>
 
@@ -946,7 +1003,7 @@
           <span>28 yrs exp · In-Person Only</span>
           <span class="tutor-card-price">$</span>
         </div>
-        <a href="bergen-tutors-profile-v2.html" class="tutor-card-link">View Profile</a>
+        <a href="#" class="tutor-card-link">View Profile</a>
       </div>
     </div>
 
@@ -1079,7 +1136,7 @@
     <div class="cta-card">
       <h3>Are You an Educator?</h3>
       <p>Join Bergen County's trusted tutoring network. List your profile, set your own rates, and connect with local families. Plans start at $19/month.</p>
-      <a href="bergen-tutors-signup-v3.html" class="btn btn-outline">List Your Profile →</a>
+      <a href="#" class="btn btn-outline">List Your Profile →</a>
     </div>
   </div>
 </section>
@@ -1089,35 +1146,10 @@
   <div class="footer-inner">
     <div>
       <div class="footer-brand">
-        <svg class="footer-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="100" r="96" fill="none" stroke="#c8a455" stroke-width="3"/>
-          <circle cx="100" cy="100" r="88" fill="none" stroke="#c8a455" stroke-width="1.5"/>
-          <circle cx="100" cy="100" r="85" fill="#1a2744"/>
-          <circle cx="100" cy="6" r="3" fill="#c8a455"/>
-          <circle cx="100" cy="194" r="3" fill="#c8a455"/>
-          <circle cx="6" cy="100" r="3" fill="#c8a455"/>
-          <circle cx="194" cy="100" r="3" fill="#c8a455"/>
-          <defs>
-            <path id="topArc3" d="M 30,100 a 70,70 0 0,1 140,0" fill="none"/>
-            <path id="bottomArc3" d="M 170,100 a 70,70 0 0,1 -140,0" fill="none"/>
-          </defs>
-          <text font-family="serif" font-size="13" fill="#c8a455" letter-spacing="5" font-weight="600">
-            <textPath href="#topArc3" startOffset="50%" text-anchor="middle">BERGEN TUTORS</textPath>
-          </text>
-          <text font-family="serif" font-size="11" fill="#c8a455" letter-spacing="4" font-style="italic">
-            <textPath href="#bottomArc3" startOffset="50%" text-anchor="middle">Certified NJ Teachers</textPath>
-          </text>
-          <g transform="translate(100, 95)" fill="none" stroke="#c8a455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M -28,12 L -28,-8 C -28,-8 -14,-14 0,-8 C 14,-14 28,-8 28,-8 L 28,12"/>
-            <line x1="0" y1="-8" x2="0" y2="12"/>
-            <path d="M -28,12 C -14,6 0,12 0,12 C 0,12 14,6 28,12"/>
-            <line x1="0" y1="-8" x2="0" y2="-22"/>
-            <path d="M -5,-26 C -5,-32 0,-36 0,-36 C 0,-36 5,-32 5,-26 C 5,-22 0,-20 0,-20 C 0,-20 -5,-22 -5,-26 Z" fill="#c8a455" stroke="none"/>
-          </g>
-        </svg>
+        <img class="footer-seal" src="public/images/bergen-tutors-logo.png" alt="Bergen Tutors"/>
         <div>
           <div class="footer-name">Bergen Tutors</div>
-          <div class="footer-motto">Bergen County's Tutoring Network</div>
+          <div class="footer-motto">Real Teachers. Tutoring.</div>
         </div>
       </div>
     </div>
@@ -1125,14 +1157,14 @@
       <div class="footer-col">
         <h4>For Families</h4>
         <a href="bergen-tutors-search-results-v1.html">Find a Tutor</a>
-        <a href="bergen-tutors-search-results-v1.html">Browse by Town</a>
-        <a href="bergen-tutors-search-results-v1.html">Browse by Subject</a>
-        <a href="index.html#how-it-works">How It Works</a>
+        <a href="#">Browse by Town</a>
+        <a href="#">Browse by Subject</a>
+        <a href="#">How It Works</a>
       </div>
       <div class="footer-col">
         <h4>For Educators</h4>
-        <a href="bergen-tutors-signup-v3.html">List Your Profile</a>
-        <a href="bergen-tutors-signup-v3.html">Pricing</a>
+        <a href="#">List Your Profile</a>
+        <a href="#">Pricing</a>
         <a href="#">FAQ</a>
       </div>
       <div class="footer-col">

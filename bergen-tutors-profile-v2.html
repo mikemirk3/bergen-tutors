@@ -53,9 +53,10 @@
     text-decoration: none;
   }
   .nav-logo-seal {
-    width: 46px;
-    height: 46px;
+    width: 56px;
+    height: 56px;
     flex-shrink: 0;
+    object-fit: contain;
   }
   .nav-text {
     display: flex;
@@ -597,63 +598,10 @@
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-brand">
-    <!-- CIRCULAR SEAL LOGO -->
-    <svg class="nav-logo-seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <!-- Outer ring -->
-      <circle cx="100" cy="100" r="96" fill="none" stroke="#c8a455" stroke-width="3"/>
-      <circle cx="100" cy="100" r="88" fill="none" stroke="#c8a455" stroke-width="1.5"/>
-      
-      <!-- Inner fill -->
-      <circle cx="100" cy="100" r="85" fill="#1a2744"/>
-      
-      <!-- Decorative dots on outer ring -->
-      <circle cx="100" cy="6" r="3" fill="#c8a455"/>
-      <circle cx="100" cy="194" r="3" fill="#c8a455"/>
-      <circle cx="6" cy="100" r="3" fill="#c8a455"/>
-      <circle cx="194" cy="100" r="3" fill="#c8a455"/>
-      
-      <!-- Latin text on circular path - top -->
-      <defs>
-        <path id="topArc" d="M 30,100 a 70,70 0 0,1 140,0" fill="none"/>
-        <path id="bottomArc" d="M 170,100 a 70,70 0 0,1 -140,0" fill="none"/>
-      </defs>
-      <text font-family="'Playfair Display', serif" font-size="13" fill="#c8a455" letter-spacing="5" font-weight="600">
-        <textPath href="#topArc" startOffset="50%" text-anchor="middle">BERGEN TUTORS</textPath>
-      </text>
-      <text font-family="'Playfair Display', serif" font-size="11" fill="#c8a455" letter-spacing="4" font-style="italic">
-        <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">Certified NJ Teachers</textPath>
-      </text>
-      
-      <!-- Center icon: open book with lamp/torch -->
-      <g transform="translate(100, 95)" fill="none" stroke="#c8a455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Book base -->
-        <path d="M -28,12 L -28,-8 C -28,-8 -14,-14 0,-8 C 14,-14 28,-8 28,-8 L 28,12" fill="none"/>
-        <line x1="0" y1="-8" x2="0" y2="12"/>
-        <!-- Book bottom -->
-        <path d="M -28,12 C -14,6 0,12 0,12 C 0,12 14,6 28,12"/>
-        <!-- Torch/lamp above book -->
-        <line x1="0" y1="-8" x2="0" y2="-22"/>
-        <!-- Flame -->
-        <path d="M -5,-26 C -5,-32 0,-36 0,-36 C 0,-36 5,-32 5,-26 C 5,-22 0,-20 0,-20 C 0,-20 -5,-22 -5,-26 Z" fill="#c8a455" stroke="none"/>
-        <!-- Light rays -->
-        <line x1="-8" y1="-30" x2="-12" y2="-34" stroke-width="1.5"/>
-        <line x1="8" y1="-30" x2="12" y2="-34" stroke-width="1.5"/>
-        <line x1="-10" y1="-24" x2="-15" y2="-24" stroke-width="1.5"/>
-        <line x1="10" y1="-24" x2="15" y2="-24" stroke-width="1.5"/>
-      </g>
-      
-      <!-- Small stars flanking -->
-      <g fill="#c8a455">
-        <polygon points="40,100 42,95 44,100 42,105" />
-        <polygon points="156,100 158,95 160,100 158,105" />
-      </g>
-      
-      <!-- Inner decorative ring -->
-      <circle cx="100" cy="100" r="55" fill="none" stroke="#c8a455" stroke-width="0.75" stroke-dasharray="2,4"/>
-    </svg>
+    <img class="nav-logo-seal" src="public/images/bergen-tutors-logo.png" alt="Bergen Tutors"/>
     <div class="nav-text">
       <span class="nav-title">Bergen Tutors</span>
-      <span class="nav-subtitle">Bergen County's Tutoring Network</span>
+      <span class="nav-subtitle">Real Teachers. Tutoring.</span>
     </div>
   </a>
   <div class="nav-links">

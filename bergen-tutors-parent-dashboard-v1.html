@@ -37,7 +37,7 @@
     position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--gold);
   }
   .nav-brand { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
-  .nav-logo-seal { width: 46px; height: 46px; flex-shrink: 0; }
+  .nav-logo-seal { width: 56px; height: 56px; flex-shrink: 0; object-fit: contain; }
   .nav-text { display: flex; flex-direction: column; line-height: 1.15; }
   .nav-title { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.35rem; font-weight: 700; letter-spacing: 0.03em; }
   .nav-subtitle { font-size: 0.62rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.25em; font-weight: 600; }
@@ -183,19 +183,11 @@
 
 <!-- NAV -->
 <nav>
-  <a href="bergen-tutors-homepage.html" class="nav-brand">
-    <svg class="nav-logo-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="48" fill="none" stroke="#C8A455" stroke-width="2.5"/>
-      <circle cx="50" cy="50" r="42" fill="none" stroke="#C8A455" stroke-width="1"/>
-      <path d="M50 22 L53 32 L64 32 L55 38 L58 49 L50 43 L42 49 L45 38 L36 32 L47 32 Z" fill="#C8A455"/>
-      <rect x="32" y="53" width="36" height="22" rx="2" fill="none" stroke="#C8A455" stroke-width="1.8"/>
-      <path d="M50 53 L50 75" stroke="#C8A455" stroke-width="1.2"/>
-      <path d="M32 62 Q41 57 50 62 Q59 57 68 62" stroke="#C8A455" stroke-width="1.2" fill="none"/>
-      <text x="50" y="91" text-anchor="middle" fill="#C8A455" font-size="6.5" letter-spacing="1.5" font-weight="600">Certified NJ Teachers</text>
-    </svg>
+  <a href="index.html" class="nav-brand">
+    <img class="nav-logo-seal" src="public/images/bergen-tutors-logo.png" alt="Bergen Tutors"/>
     <div class="nav-text">
       <span class="nav-title">Bergen Tutors</span>
-      <span class="nav-subtitle">Bergen County's Tutoring Network</span>
+      <span class="nav-subtitle">Real Teachers. Tutoring.</span>
     </div>
   </a>
   <div class="nav-right">

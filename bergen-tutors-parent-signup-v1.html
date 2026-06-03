@@ -46,7 +46,7 @@
     border-bottom: 3px solid var(--gold);
   }
   .nav-brand { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
-  .nav-logo-seal { width: 46px; height: 46px; flex-shrink: 0; }
+  .nav-logo-seal { width: 56px; height: 56px; flex-shrink: 0; object-fit: contain; }
   .nav-text { display: flex; flex-direction: column; line-height: 1.15; }
   .nav-title {
     font-family: 'Playfair Display', serif;
@@ -567,19 +567,11 @@
 
 <!-- NAV -->
 <nav>
-  <a href="bergen-tutors-homepage.html" class="nav-brand">
-    <svg class="nav-logo-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="48" fill="none" stroke="#C8A455" stroke-width="2.5"/>
-      <circle cx="50" cy="50" r="42" fill="none" stroke="#C8A455" stroke-width="1"/>
-      <path d="M50 22 L53 32 L64 32 L55 38 L58 49 L50 43 L42 49 L45 38 L36 32 L47 32 Z" fill="#C8A455"/>
-      <rect x="32" y="53" width="36" height="22" rx="2" fill="none" stroke="#C8A455" stroke-width="1.8"/>
-      <path d="M50 53 L50 75" stroke="#C8A455" stroke-width="1.2"/>
-      <path d="M32 62 Q41 57 50 62 Q59 57 68 62" stroke="#C8A455" stroke-width="1.2" fill="none"/>
-      <text x="50" y="91" text-anchor="middle" fill="#C8A455" font-size="6.5" letter-spacing="1.5" font-weight="600">Certified NJ Teachers</text>
-    </svg>
+  <a href="index.html" class="nav-brand">
+    <img class="nav-logo-seal" src="public/images/bergen-tutors-logo.png" alt="Bergen Tutors"/>
     <div class="nav-text">
       <span class="nav-title">Bergen Tutors</span>
-      <span class="nav-subtitle">Bergen County's Tutoring Network</span>
+      <span class="nav-subtitle">Real Teachers. Tutoring.</span>
     </div>
   </a>
   <a href="#" class="nav-signin">Already have an account? Sign in</a>
@@ -625,7 +617,10 @@
           </div>
           <div class="field">
             <label class="field-label">Your town</label>
-            <input type="text" id="parentTown" placeholder="e.g. Cresskill, Teaneck, Nyack…" />
+            <div style="position:relative;">
+              <input type="text" id="parentTown" placeholder="e.g. Cresskill, Teaneck…" autocomplete="off" oninput="parentTownFilter(this.value)" />
+              <div id="parentTownSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:100;background:#fff;border:1.5px solid #1a2744;border-radius:0 0 8px 8px;box-shadow:0 8px 24px rgba(26,39,68,0.15);max-height:200px;overflow-y:auto;"></div>
+            </div>
             <div class="field-hint">Bergen County and neighboring towns welcome.</div>
           </div>
         </div>
@@ -894,6 +889,44 @@
 </div><!-- /page-wrapper -->
 
 <script>
+  var BERGEN_TOWNS = [
+    'Allendale','Alpine','Bergenfield','Bogota','Cliffside Park','Closter',
+    'Cresskill','Demarest','Dumont','Elmwood Park','Emerson','Englewood',
+    'Fair Lawn','Fort Lee','Franklin Lakes','Garfield','Glen Rock','Hackensack',
+    'Harrington Park','Hasbrouck Heights','Haworth','Hillsdale','Ho-Ho-Kus',
+    'Leonia','Lodi','Mahwah','Maywood','Midland Park','Montvale','New Milford',
+    'Northvale','Norwood','Oakland','Old Tappan','Oradell','Palisades Park',
+    'Paramus','Park Ridge','Ramsey','Ridgefield','Ridgewood','River Edge',
+    'River Vale','Rochelle Park','Rutherford','Saddle Brook','Saddle River',
+    'Teaneck','Tenafly','Upper Saddle River','Waldwick','Wallington',
+    'Washington Township','Westwood','Wood-Ridge','Woodcliff Lake','Wyckoff'
+  ];
+
+  function parentTownFilter(val) {
+    var box = document.getElementById('parentTownSuggestions');
+    if (!val || val.length < 1) { box.style.display = 'none'; return; }
+    var q = val.toLowerCase();
+    var matches = BERGEN_TOWNS.filter(function(t) { return t.toLowerCase().indexOf(q) !== -1; }).slice(0, 7);
+    if (!matches.length) { box.style.display = 'none'; return; }
+    box.innerHTML = matches.map(function(t) {
+      return '<div onclick="parentSelectTown(\'' + t.replace(/'/g,"\\'") + '\')" style="padding:0.55rem 0.9rem;cursor:pointer;font-size:0.9rem;color:#2c2c2c;border-bottom:1px solid #e5e2dc;font-family:\'Source Sans 3\',sans-serif;">' + t + '</div>';
+    }).join('');
+    box.style.display = '';
+  }
+
+  function parentSelectTown(t) {
+    document.getElementById('parentTown').value = t;
+    document.getElementById('parentTownSuggestions').style.display = 'none';
+  }
+
+  document.addEventListener('click', function(e) {
+    var wrap = document.getElementById('parentTown');
+    if (wrap && !wrap.closest('[style*="position:relative"]').contains(e.target)) {
+      var box = document.getElementById('parentTownSuggestions');
+      if (box) box.style.display = 'none';
+    }
+  });
+
   function toggleContactMethod() {
     var wantsPhone = document.getElementById('contact-phone-check').checked;
     var wantsEmail = document.getElementById('contact-email-check').checked;
@@ -922,6 +955,7 @@
   }
 
   var SUBJECTS = [
+    'All Subjects / General Tutoring',
     'Algebra I','Algebra II','Pre-Calculus','Calculus','AP Calculus AB','AP Calculus BC',
     'Geometry','Statistics','AP Statistics',
     'SAT Math','SAT Reading & Writing','SAT (Full)','ACT Math','ACT (Full)',
